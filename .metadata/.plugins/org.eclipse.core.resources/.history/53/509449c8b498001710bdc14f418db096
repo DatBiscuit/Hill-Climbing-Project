@@ -1,0 +1,9 @@
+package Evaluation;
+
+public class PuzzleGraph {
+
+	public PuzzleGraph(int[][] grid){
+		PuzzleNode f = new PuzzleNode();
+		
+	}
+}
