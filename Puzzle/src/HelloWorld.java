@@ -70,7 +70,9 @@ public class HelloWorld extends Application {
 		    		 * proper input includes only whole number digits
 		    		 */
 		    		try {
-		    			
+		    		if(Integer.parseInt(size.getText())<=1){
+		    			throw new Exception();
+		    		}	
 		    		mSize = Integer.parseInt(size.getText());
 		    		
 		    		} catch(Exception ex) {
@@ -98,6 +100,7 @@ public class HelloWorld extends Application {
 		                    tf.setEditable(false);
 		                    if(x == mSize-1 && y == mSize-1) {
 		                    	tf.setText(" 0 ");
+		                    	EvaluationGrid.setTable(y, x, 0);
 		                    } else {
 		                    	tf.setText(" " + rand1 + " ");
 		                    	EvaluationGrid.setTable(y, x, rand1);

@@ -1,17 +1,24 @@
 package Evaluation;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 public class MinTurnNode {
-	int value;
-	ArrayList<MinTurnNode> children;
-	MinTurnNode parent;
-	int x,y;
+	public int value;
+	//ArrayList<MinTurnNode> children;
+	public MinTurnNode north;
+	public MinTurnNode south;
+	public MinTurnNode west;
+	public MinTurnNode east;
+	int r,c;
+	short minpath = -1;
 	
-	public MinTurnNode(int num, int x, int y) {
+	public MinTurnNode(){
+		
+	}
+	public MinTurnNode( int r, int c,int num) {
 		this.value = num;
-		this.x = x;
-		this.y = y;
+		this.r = r;
+		this.c = c;
 	}
 	
 	/*
@@ -20,9 +27,9 @@ public class MinTurnNode {
 	}
 	
 	public void setChildren(MinTurnNode par, MinTurnNode child) {
-		if(par.children == null) {
+		
 			par.children.add(child);
-		}
+		
 	}
 	*/
 
