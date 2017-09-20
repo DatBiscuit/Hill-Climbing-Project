@@ -1,0 +1,12 @@
+import javafx.scene.layout.GridPane;
+
+
+public class EvaluationGrid {
+	
+	public int[][] eval;
+	
+	public static void evalGrid() {
+		System.out.println();
+	}
+
+}

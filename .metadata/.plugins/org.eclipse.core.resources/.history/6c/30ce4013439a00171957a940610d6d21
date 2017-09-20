@@ -1,0 +1,18 @@
+
+import javafx.scene.layout.GridPane;
+
+
+public class EvaluationGrid {
+	
+	public int[][] eval;
+	
+	public static void evalGrid() {
+		double test = HelloWorld.root.getHgap();
+		System.out.println(test);
+	}
+	
+	public static void setTable(int x, int y, int val) {
+		
+	}
+
+}

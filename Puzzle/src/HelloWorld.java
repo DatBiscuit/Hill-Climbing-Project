@@ -24,12 +24,11 @@ public class HelloWorld extends Application {
 	public static Scene scene;
 	public static Scene scene2;
 	public static int mSize;
+	public static GridPane root;
 	
 	
 	public static void main(String[] args) {
 		launch(args);
-	
-
 	}
 
 	@Override
@@ -80,7 +79,8 @@ public class HelloWorld extends Application {
 		    			return;
 		    		}
 		    		
-		    		GridPane root = new GridPane();
+		    		EvaluationGrid.evalGrid(mSize);
+		    		root = new GridPane();
 		    		for(int y = 0; y < mSize; y++){
 		                for(int x = 0; x < mSize; x++){
 
@@ -97,9 +97,10 @@ public class HelloWorld extends Application {
 		                    tf.setAlignment(Pos.CENTER);
 		                    tf.setEditable(false);
 		                    if(x == mSize-1 && y == mSize-1) {
-		                    	tf.setText("G");
+		                    	tf.setText(" 0 ");
 		                    } else {
 		                    	tf.setText(" " + rand1 + " ");
+		                    	EvaluationGrid.setTable(y, x, rand1);
 		                    }
 
 		                    // Iterate the Index using the loops
@@ -108,6 +109,8 @@ public class HelloWorld extends Application {
 		                    root.getChildren().add(tf);
 		                }
 		            }
+		    		
+		    		EvaluationGrid.printTable();
 		    		
 		    		scene2 = new Scene(root);
 		    		stage.setScene(scene2);
