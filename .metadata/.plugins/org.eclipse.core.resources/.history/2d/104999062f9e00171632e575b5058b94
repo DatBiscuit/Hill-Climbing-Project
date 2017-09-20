@@ -51,44 +51,33 @@ public class EvaluationGrid {
 		}
 	}
 	public static void createResult() {
+		short path = 0;
 		int[][] visited = new int[eval.length][eval.length];
 		Queue<MinTurnNode> queue = new LinkedList<MinTurnNode>();
 		MinTurnNode Temp;
 		queue.add(eval[0][0]);
-		eval[0][0].minpath = 0;
 		
 		while(!queue.isEmpty()){
 			Temp = queue.poll();
 			if(visited[Temp.r][Temp.c]==0){
-				
+				Temp.minpath = path;
 				visited[Temp.r][Temp.c]=1;
-				
+				path++;
 				if(Temp.north!=null){
 					queue.add(Temp.north);
-					if(Temp.north.minpath==-1){
-						Temp.north.minpath = Temp.minpath+1;
-					}
+					path--;
 				}
 				if(Temp.south!=null){
 					queue.add(Temp.south);
-					if(Temp.south.minpath==-1){
-						Temp.south.minpath = Temp.minpath+1;
-					}
-					
+					path--;
 				}
 				if(Temp.east!=null){
 					queue.add(Temp.east);
-					if(Temp.east.minpath==-1){
-						Temp.east.minpath = Temp.minpath+1;
-					}
-					
+					path--;
 				}
 				if(Temp.west!=null){
 					queue.add(Temp.west);
-					if(Temp.west.minpath==-1){
-						Temp.west.minpath = Temp.minpath+1;
-					}
-					
+					path--;
 				}
 				
 			}

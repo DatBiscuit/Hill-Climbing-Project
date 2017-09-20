@@ -116,7 +116,6 @@ public class HelloWorld extends Application {
 		    		
 		    		EvaluationGrid.printTable();
 		    		EvaluationGrid.createResult();
-		    		System.out.println();
 		    		EvaluationGrid.printResultTable();
 		    		scene2 = new Scene(root);
 		    		stage.setScene(scene2);

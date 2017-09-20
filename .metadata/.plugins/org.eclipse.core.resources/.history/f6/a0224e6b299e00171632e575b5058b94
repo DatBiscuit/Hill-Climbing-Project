@@ -9,8 +9,8 @@ public class MinTurnNode {
 	public MinTurnNode south;
 	public MinTurnNode west;
 	public MinTurnNode east;
-	public int r,c;
-	public int minpath = -1;
+	int r,c;
+	public short minpath = -1;
 	
 	public MinTurnNode(){
 		
