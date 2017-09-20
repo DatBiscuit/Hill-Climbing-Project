@@ -1,18 +1,7 @@
-# Java defaults (https://github.com/github/gitignore/blob/master/Java.gitignore) #
-# --- #
-*.class
-# Package Files #
-*.jar
-*.war
-*.ear
-# --- #
-# Eclipse-specific (https://github.com/github/gitignore/blob/master/Global/Eclipse.gitignore) #
-# --- #
-*.pydevproject
+
 .metadata
-bin/**
-tmp/**
-tmp/**/*
+bin/
+tmp/
 *.tmp
 *.bak
 *.swp
@@ -20,21 +9,42 @@ tmp/**/*
 local.properties
 .settings/
 .loadpath
-# You may want to remove the sharp symbols here if you are using Maven
-#.project
-#.classpath
+.recommenders
+
 # External tool builders
 .externalToolBuilders/
+
 # Locally stored "Eclipse launch configurations"
 *.launch
-# CDT-specific
+
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
+
+# CDT-specific (C/C++ Development Tooling)
 .cproject
-# PDT-specific
+
+# Java annotation processor (APT)
+.factorypath
+
+# PDT-specific (PHP Development Tools)
 .buildpath
-# --------------- #
-# Studio-specific #
-# --------------- #
-.studio/
-flows/
-target/
-**/*.mflow
+
+# sbteclipse plugin
+.target
+
+# Tern plugin
+.tern-project
+
+# TeXlipse plugin
+.texlipse
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Code Recommenders
+.recommenders/
+
+# Scala IDE specific (Scala & Java development for Eclipse)
+.cache-main
+.scala_dependencies
+.worksheet
