@@ -136,7 +136,10 @@ public class EvaluationGrid {
 	
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 90a0c15de3a87fb121d416caf822795f5e659574
 =======
 >>>>>>> 90a0c15de3a87fb121d416caf822795f5e659574
 	public static void BasicHillClimb(){
@@ -153,7 +156,10 @@ public class EvaluationGrid {
         
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 90a0c15de3a87fb121d416caf822795f5e659574
 =======
 >>>>>>> 90a0c15de3a87fb121d416caf822795f5e659574
 	
