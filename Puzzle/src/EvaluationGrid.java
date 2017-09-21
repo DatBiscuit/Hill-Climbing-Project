@@ -135,7 +135,10 @@ public class EvaluationGrid {
 	}
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 90a0c15de3a87fb121d416caf822795f5e659574
 	public static void BasicHillClimb(){
 		Random rand = new Random();
         int val = rand.nextInt(eval.length);
@@ -149,7 +152,10 @@ public class EvaluationGrid {
         //create graph,result then check for better or no
         
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 90a0c15de3a87fb121d416caf822795f5e659574
 	
 	
 	
