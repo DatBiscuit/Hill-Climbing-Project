@@ -2,6 +2,10 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import Evaluation.MinTurnNode;
 
 
@@ -98,25 +102,84 @@ public class EvaluationGrid {
 		
 	}
 	
-	public static void printResultTable() {
+	public static GridPane printResultTable() {
+		GridPane root = new GridPane();
+		int evalFunction = 0;
+		
 		for(int i = 0; i < eval.length; i++) {
 			for(int j = 0; j < eval.length; j++) {
+				//setting the text for the GUI
+				TextField tf = new TextField();
+				tf.setPrefHeight(50);
+                tf.setPrefWidth(50);
+                tf.setAlignment(Pos.CENTER);
+                tf.setEditable(false);
+                if(eval[i][j].minpath == -1) {
+                	tf.setText(" X ");
+                	evalFunction++;
+                } else {
+                	tf.setText(" " + eval[i][j].minpath + " ");
+                }
+                root.setRowIndex(tf,i);
+                root.setColumnIndex(tf,j);    
+                root.getChildren().add(tf);
 				System.out.print(" " + eval[i][j].minpath + " ");
 			}
 			System.out.println();
 		}
+		System.out.println(evalFunction);
+		root.addRow(eval.length + 1, new Label("Evaluation value: " + evalFunction));
+		return root;
+		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 /*	
+ * root = new GridPane();
+		    		for(int y = 0; y < mSize; y++){
+		                for(int x = 0; x < mSize; x++){
+
+		                    Random rand = new Random();
+		                    int rand1 = rand.nextInt(mSize);
+		                    while(rand1 == 0) {
+		                    	rand1 = rand.nextInt(mSize);
+		                    }
+
+		                    // Create a new TextField in each Iteration
+		                    TextField tf = new TextField();
+		                    tf.setPrefHeight(50);
+		                    tf.setPrefWidth(50);
+		                    tf.setAlignment(Pos.CENTER);
+		                    tf.setEditable(false);
+		                    if(x == mSize-1 && y == mSize-1) {
+		                    	tf.setText(" 0 ");
+		                    	EvaluationGrid.setTable(y, x, 0);
+		                    } else {
+		                    	tf.setText(" " + rand1 + " ");
+		                    	EvaluationGrid.setTable(y, x, rand1);
+		                    }
+
+		                    // Iterate the Index using the loops
+		                    root.setRowIndex(tf,y);
+		                    root.setColumnIndex(tf,x);    
+		                    root.getChildren().add(tf);
+		                }
+		            }
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
 	public static int[][] eval;
 	public static int[][] result;
 	

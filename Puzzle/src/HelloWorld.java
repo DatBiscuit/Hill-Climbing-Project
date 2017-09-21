@@ -5,9 +5,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -33,8 +36,33 @@ public class HelloWorld extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
+		/*
+		TabPane tabPane = new TabPane();
+
+        BorderPane borderPane = new BorderPane();
+        for (int i = 0; i < 5; i++) {
+            Tab tab = new Tab();
+            tab.setText("Tab" + i);
+            HBox hbox = new HBox();
+            hbox.getChildren().add(new Label("Tab" + i));
+            hbox.setAlignment(Pos.CENTER);
+            tab.setContent(hbox);
+            tabPane.getTabs().add(tab);
+        }
+        // bind to take available space
+        borderPane.prefHeightProperty().bind(scene.heightProperty());
+        borderPane.prefWidthProperty().bind(scene.widthProperty());
+        
+        borderPane.setCenter(tabPane);
+        root.getChildren().add(borderPane);
+        */
 		
 		stage.setTitle("AI Project 1");
+		
+		TabPane tabs = new TabPane();
+		Tab gridtab = new Tab();
+		Tab evaltab = new Tab();
+		
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.CENTER);
 		grid.setHgap(10);
@@ -112,13 +140,25 @@ public class HelloWorld extends Application {
 		                    root.getChildren().add(tf);
 		                }
 		            }
-		    		EvaluationGrid.createGraph();
 		    		
+		    		//setting up first tab for the original grid
+		    		gridtab.setContent(root);
+		    		gridtab.setText("Original Grid");
+		    		tabs.getTabs().add(gridtab);
+		    		
+		    		//where the evaluation takes place
+		    		EvaluationGrid.createGraph();
 		    		EvaluationGrid.printTable();
 		    		EvaluationGrid.createResult();
 		    		System.out.println();
-		    		EvaluationGrid.printResultTable();
-		    		scene2 = new Scene(root);
+		    		
+		    		//setting up second tab
+		    		evaltab.setContent(EvaluationGrid.printResultTable());
+		    		evaltab.setText("Evaluation Grid");
+		    		tabs.getTabs().add(evaltab);
+		    		
+		    		//set the scene to show
+		    		scene2 = new Scene(tabs);
 		    		stage.setScene(scene2);
 		    		stage.show();
 		    		
