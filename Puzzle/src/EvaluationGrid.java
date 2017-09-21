@@ -1,6 +1,7 @@
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
 
 import Evaluation.MinTurnNode;
 
@@ -65,27 +66,27 @@ public class EvaluationGrid {
 				
 				if(Temp.north!=null){
 					queue.add(Temp.north);
-					if(Temp.north.minpath==-1){
+					if(Temp.north.minpath==-1||Temp.north.minpath>Temp.minpath+1){
 						Temp.north.minpath = Temp.minpath+1;
 					}
 				}
 				if(Temp.south!=null){
 					queue.add(Temp.south);
-					if(Temp.south.minpath==-1){
+					if(Temp.south.minpath==-1||Temp.south.minpath>Temp.minpath+1){
 						Temp.south.minpath = Temp.minpath+1;
 					}
 					
 				}
 				if(Temp.east!=null){
 					queue.add(Temp.east);
-					if(Temp.east.minpath==-1){
+					if(Temp.east.minpath==-1||Temp.east.minpath>Temp.minpath+1){
 						Temp.east.minpath = Temp.minpath+1;
 					}
 					
 				}
 				if(Temp.west!=null){
 					queue.add(Temp.west);
-					if(Temp.west.minpath==-1){
+					if(Temp.west.minpath==-1||Temp.west.minpath>Temp.minpath+1){
 						Temp.west.minpath = Temp.minpath+1;
 					}
 					
@@ -107,7 +108,19 @@ public class EvaluationGrid {
 		}
 	}
 	
-	
+	public static void BasicHillClimb(){
+		Random rand = new Random();
+        int val = rand.nextInt(eval.length);
+        while(val == 0) {
+        	val = rand.nextInt(eval.length);
+        }
+        int r = rand.nextInt(eval.length);
+        int c = rand.nextInt(eval.length);
+        
+        eval[r][c].value=val;
+        //create graph,result then check for better or no
+        
+	}
 	
 	
 	
