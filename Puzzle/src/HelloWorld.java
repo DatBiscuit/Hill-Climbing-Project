@@ -1,5 +1,6 @@
 import java.util.Random;
 
+import Evaluation.MinTurnNode;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -151,6 +152,10 @@ public class HelloWorld extends Application {
 		    		EvaluationGrid.printTable();
 		    		EvaluationGrid.createResult();
 		    		System.out.println();
+		    		EvaluationGrid.printResultTable();
+		    		BHC(EvaluationGrid.eval,50);
+		    		
+		    		
 		    		
 		    		//setting up second tab
 		    		evaltab.setContent(EvaluationGrid.printResultTable());
@@ -184,6 +189,33 @@ public class HelloWorld extends Application {
 	    	stage.setScene(scene);
 	    	stage.show();
 	    }
+	public static MinTurnNode[][] BHC(MinTurnNode[][] start, int it){
+		System.out.println("BHC: \n");
+		int n = start.length-1;
+		MinTurnNode[][] temp = start;
+		System.out.println("This is temp:" +temp[0][0].value);
+		
+		
+		while(it!=0){
+		
+			EvaluationGrid.BasicHillClimb();
+		
+			EvaluationGrid.createGraph();
+			EvaluationGrid.printTable();
+			EvaluationGrid.createResult();
+			System.out.println();
+			EvaluationGrid.printResultTable();
 	
+			if(start[n][n].value>temp[n][n].value){
+				start = temp;
+			}
+			it--;
+		}
+		
+		
+		
+		return start;
+		
+	}
 
 }

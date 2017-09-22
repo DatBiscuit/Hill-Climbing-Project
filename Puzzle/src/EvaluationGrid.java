@@ -18,7 +18,7 @@ public class EvaluationGrid {
 	
 	public static void evalGrid(int size) {
 		eval = new MinTurnNode[size][size];
-		result = new MinTurnNode[size][size];
+	//	result = new MinTurnNode[size][size];
 	}
 	
 	public static void setTable(int r, int c, int val) {
@@ -117,7 +117,7 @@ public class EvaluationGrid {
                 tf.setEditable(false);
                 if(eval[i][j].minpath == -1) {
                 	tf.setText(" X ");
-                	evalFunction++;
+                	evalFunction--;
                 } else {
                 	tf.setText(" " + eval[i][j].minpath + " ");
                 }
@@ -128,20 +128,19 @@ public class EvaluationGrid {
 			}
 			System.out.println();
 		}
+		if(eval[eval.length-1][eval.length-1].minpath==-1){
 		System.out.println(evalFunction);
 		root.addRow(eval.length + 1, new Label("Evaluation value: " + evalFunction));
+		}else{
+			System.out.println(eval[eval.length-1][eval.length-1].minpath);
+			root.addRow(eval.length + 1, new Label("Evaluation value: " + eval[eval.length-1][eval.length-1].minpath));
+
+		}
 		return root;
 		
 	}
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 90a0c15de3a87fb121d416caf822795f5e659574
-=======
->>>>>>> 90a0c15de3a87fb121d416caf822795f5e659574
+
 	public static void BasicHillClimb(){
 		Random rand = new Random();
         int val = rand.nextInt(eval.length);
@@ -150,97 +149,14 @@ public class EvaluationGrid {
         }
         int r = rand.nextInt(eval.length);
         int c = rand.nextInt(eval.length);
+        while(r!=eval.length-1 && c!=eval.length-1){
+        	r = rand.nextInt(eval.length);
+        	c = rand.nextInt(eval.length);
+        }
         
         eval[r][c].value=val;
         //create graph,result then check for better or no
         
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-	
-=======
->>>>>>> 90a0c15de3a87fb121d416caf822795f5e659574
-=======
->>>>>>> 90a0c15de3a87fb121d416caf822795f5e659574
-	
-	
-	
-	
-	
-	
-	
->>>>>>> 90a0c15de3a87fb121d416caf822795f5e659574
-/*	
- * root = new GridPane();
-		    		for(int y = 0; y < mSize; y++){
-		                for(int x = 0; x < mSize; x++){
 
-		                    Random rand = new Random();
-		                    int rand1 = rand.nextInt(mSize);
-		                    while(rand1 == 0) {
-		                    	rand1 = rand.nextInt(mSize);
-		                    }
-
-		                    // Create a new TextField in each Iteration
-		                    TextField tf = new TextField();
-		                    tf.setPrefHeight(50);
-		                    tf.setPrefWidth(50);
-		                    tf.setAlignment(Pos.CENTER);
-		                    tf.setEditable(false);
-		                    if(x == mSize-1 && y == mSize-1) {
-		                    	tf.setText(" 0 ");
-		                    	EvaluationGrid.setTable(y, x, 0);
-		                    } else {
-		                    	tf.setText(" " + rand1 + " ");
-		                    	EvaluationGrid.setTable(y, x, rand1);
-		                    }
-
-		                    // Iterate the Index using the loops
-		                    root.setRowIndex(tf,y);
-		                    root.setColumnIndex(tf,x);    
-		                    root.getChildren().add(tf);
-		                }
-		            }
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
-	public static int[][] eval;
-	public static int[][] result;
-	
-	public static void evalGrid(int size) {
-		eval = new int[size][size];
-		result = new int[size][size];
-	}
-	
-	public static void setTable(int x, int y, int val) {
-		eval[x][y] = val;
-		return;
-	}
-	
-	public static void printTable() {
-		for(int i = 0; i < eval.length; i++) {
-			for(int j = 0; j< eval.length; j++) {
-				System.out.print(" " + eval[i][j] + " ");
-			}
-			System.out.println();
-		}
-	}
-	
-	public static void createResult() {
-		
-	}
-*/
 }
