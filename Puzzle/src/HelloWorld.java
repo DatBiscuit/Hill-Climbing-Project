@@ -1,3 +1,4 @@
+import java.util.Calendar;
 import java.util.Random;
 
 import Evaluation.MinTurnNode;
@@ -6,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -195,9 +195,9 @@ public class HelloWorld extends Application {
 		MinTurnNode[][] temp = start;
 		System.out.println("This is temp:" +temp[0][0].value);
 		
-		
+		int s,f;
 		while(it!=0){
-		
+			s = Calendar.getInstance().get(Calendar.MILLISECOND);
 			EvaluationGrid.BasicHillClimb();
 		
 			EvaluationGrid.createGraph();
@@ -210,6 +210,9 @@ public class HelloWorld extends Application {
 				start = temp;
 			}
 			it--;
+			f = Calendar.getInstance().get(Calendar.MILLISECOND);
+			
+			System.out.println("Start: "+s+"\nFinish: "+f+"\nTime Taken: "+(f-s));
 		}
 		
 		
