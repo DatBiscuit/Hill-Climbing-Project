@@ -1,5 +1,9 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Calendar;
+import java.util.Formatter;
 import java.util.Random;
+import java.util.Scanner;
 
 import Evaluation.MinTurnNode;
 import javafx.application.Application;
@@ -191,10 +195,16 @@ public class HelloWorld extends Application {
 	    }
 	public static MinTurnNode[][] BHC(MinTurnNode[][] start, int it){
 		System.out.println("BHC: \n");
+
+		Formatter file = null;
 		int n = start.length-1;
 		MinTurnNode[][] temp = start;
-		System.out.println("This is temp:" +temp[0][0].value);
-		
+		try {
+			file = new Formatter("C:\\Users\\Travis\\Desktop\\AIproject1\\BHCResults.txt");
+			
+		}catch(FileNotFoundException e){
+			System.out.println("Error/n/n/n/n");
+		}	
 		int s,f;
 		while(it!=0){
 			s = Calendar.getInstance().get(Calendar.MILLISECOND);
@@ -213,9 +223,13 @@ public class HelloWorld extends Application {
 			f = Calendar.getInstance().get(Calendar.MILLISECOND);
 			
 			System.out.println("Start: "+s+"\nFinish: "+f+"\nTime Taken: "+(f-s));
+			if(file!=null) {
+				System.out.println("Its writing");
+				file.format("%s %d %s %d %s %d %s","Start: ",s,"End: ",f,"Total Time: ",(f-s),"\r\n");
+			}	
 		}
 		
-		
+		file.close();
 		
 		return start;
 		
