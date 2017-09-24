@@ -44,7 +44,8 @@ public class EvaluationGrid {
 		for(int i = 0; i< eval.length;i++){
 			for(int j = 0; j<eval.length;j++){
 				dis = eval[i][j].value;
-				eval[i][j].minpath = -1;
+				eval[i][j].minpath = -1;	
+				resetEdge(i,j);
 				if(i+dis<eval.length){
 					eval[i][j].south = eval[i+dis][j];
 				}
@@ -148,8 +149,35 @@ public class EvaluationGrid {
 		return root;
 		
 	}
+	public static void resetEdge(int i, int j) {
+		eval[i][j].north=null;
+		eval[i][j].south=null;
+		eval[i][j].east=null;
+		eval[i][j].west=null;
+		
+	}
 	
+	public static int[][] fillArr(int[][]temp){
+		for(int i = 0; i<eval.length;i++) {
+			for(int j=0;j<eval.length;j++) {
+				temp[i][j]=eval[i][j].value;
+			}
+		}
+		
+		return temp;
+		
+	}
 
+	public static void fillEval(int[][]temp){
+		for(int i = 0; i<eval.length;i++) {
+			for(int j=0;j<eval.length;j++) {
+				eval[i][j].value=temp[i][j];
+			}
+		}
+	
+		
+	}
+	
 	public static int[] BasicHillClimb(){
 		int[] pre = new int[3];
 		Random rand = new Random();

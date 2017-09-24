@@ -157,8 +157,8 @@ public class HelloWorld extends Application {
 		    		EvaluationGrid.createResult();
 		    		System.out.println();
 		    		EvaluationGrid.printResultTable();
-		    		BHC(EvaluationGrid.eval ,200);
-		    		
+		    		//BHC(EvaluationGrid.eval ,200);
+		    		HCR(EvaluationGrid.eval,200,5);
 		    		
 		    		
 		    		//setting up second tab
@@ -199,7 +199,7 @@ public class HelloWorld extends Application {
 		int n = start.length-1;
 		int s,f;
 		int[] pre;
-		int sminpath= start[n][n].minpath;
+		int sminpath;
 		
 		
 		
@@ -256,4 +256,94 @@ public class HelloWorld extends Application {
 		
 	}
 
+	
+	
+	public static MinTurnNode[][] HCR(MinTurnNode[][] start, int it, int r){
+		System.out.println("BHC: \n");
+		Formatter file = null;
+		int n = start.length-1;
+		int s,f;
+		int[] pre;
+		int sminpath=start[n][n].minpath;
+		int[][] init = new int[n+1][n+1];
+		int[][] best = new int[n+1][n+1];
+		
+		
+		try {
+			file = new Formatter("HCRResults.txt");
+			
+		}catch(FileNotFoundException e){
+			System.out.println("Error/n/n/n/n");
+		}	
+		
+		
+		init = EvaluationGrid.fillArr(init);
+		
+		
+		while(it!=0){
+			s = Calendar.getInstance().get(Calendar.MILLISECOND);
+			
+			if(it%r==0) {
+				System.out.println("HCR RESET: "+sminpath+" "+start[n][n].minpath);
+				EvaluationGrid.printTable();
+				EvaluationGrid.fillEval(init);
+				EvaluationGrid.printTable();
+				System.out.println("HCR RESET: "+sminpath+" "+start[n][n].minpath);
+				file.format("%s \r\n","RESET");
+				
+			}
+
+			
+			pre = EvaluationGrid.BasicHillClimb();
+		
+			//System.out.println(sminpath+" "+start[n][n].minpath);
+			
+			EvaluationGrid.createGraph();
+			EvaluationGrid.printTable();
+			EvaluationGrid.createResult();
+			
+			//System.out.println(sminpath+" "+start[n][n].minpath);
+			
+			System.out.println();
+			EvaluationGrid.printResultTable();
+	
+			//revert back to original grid
+			if(start[n][n].minpath < sminpath){
+				System.out.println(sminpath+" "+start[n][n].minpath);
+				start[pre[1]][pre[2]].value = pre[0];
+				System.out.println("r: "+pre[1]+" c: "+pre[2]+" pre val: "+pre[0]);
+				EvaluationGrid.createGraph();
+				EvaluationGrid.printTable();
+				EvaluationGrid.createResult();
+				
+			}else {
+				//BEST
+				sminpath=start[n][n].minpath;
+				best = EvaluationGrid.fillArr(best);
+			}
+			
+			it--;
+			f = Calendar.getInstance().get(Calendar.MILLISECOND);
+			
+			System.out.println("Start: "+s+"\nFinish: "+f+"\nTime Taken: "+(f-s));
+			if(file!=null) {
+				System.out.println("Its writing");
+				file.format("%s %d %s %d %s %d %s %d %s","Start: ",s,"End: ",f,"Total Time: ",(f-s),"Evaluation Val: ",start[n][n].minpath,"\r\n");
+			}	
+		}
+		EvaluationGrid.fillEval(best);
+		file.format("\r\n%s %d\r\n","Best Eval: ",sminpath);
+		
+		file.close();
+		
+		return start;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 }
