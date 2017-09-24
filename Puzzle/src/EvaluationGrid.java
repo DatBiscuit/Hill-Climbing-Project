@@ -35,6 +35,10 @@ public class EvaluationGrid {
 			System.out.println();
 		}
 	}
+	
+	/*
+	 * creates the edges between the nodes
+	 */
 	public static void createGraph(){
 		int dis;
 		for(int i = 0; i< eval.length;i++){
@@ -56,6 +60,10 @@ public class EvaluationGrid {
 			}
 		}
 	}
+	
+	/*
+	 * creates the evaluation grid 
+	 */
 	public static void createResult() {
 		int[][] visited = new int[eval.length][eval.length];
 		Queue<MinTurnNode> queue = new LinkedList<MinTurnNode>();
@@ -160,7 +168,7 @@ public class EvaluationGrid {
         pre[2] = c;
         
         eval[r][c].value=val;
-        //create graph,result then check for better or no
+        
         return pre;
         
 	}

@@ -157,7 +157,7 @@ public class HelloWorld extends Application {
 		    		EvaluationGrid.createResult();
 		    		System.out.println();
 		    		EvaluationGrid.printResultTable();
-		    		BHC(EvaluationGrid.eval,200);
+		    		BHC(EvaluationGrid.eval ,200);
 		    		
 		    		
 		    		
@@ -211,28 +211,35 @@ public class HelloWorld extends Application {
 		}	
 		
 		while(it!=0){
+			sminpath = start[n][n].minpath;
 			s = Calendar.getInstance().get(Calendar.MILLISECOND);
 			pre = EvaluationGrid.BasicHillClimb();
 		
-			System.out.println(start[n][n].minpath+" "+sminpath);
+			//System.out.println(sminpath+" "+start[n][n].minpath);
 			
 			EvaluationGrid.createGraph();
 			EvaluationGrid.printTable();
 			EvaluationGrid.createResult();
 			
-			System.out.println(start[n][n].minpath+" "+sminpath);
+			//System.out.println(sminpath+" "+start[n][n].minpath);
 			
 			System.out.println();
 			EvaluationGrid.printResultTable();
 	
-			if(start[n][n].minpath<sminpath){
-				start[pre[1]][pre[2]].value= pre[0];
+			//revert back to original grid
+			if(start[n][n].minpath < sminpath){
+				System.out.println(sminpath+" "+start[n][n].minpath);
+				start[pre[1]][pre[2]].value = pre[0];
 				System.out.println("r: "+pre[1]+" c: "+pre[2]+" pre val: "+pre[0]);
 				EvaluationGrid.createGraph();
 				EvaluationGrid.printTable();
 				EvaluationGrid.createResult();
 				
+			}/*else {
+				//change to new grid
+				sminpath=start[n][n].minpath;
 			}
+			*/
 			it--;
 			f = Calendar.getInstance().get(Calendar.MILLISECOND);
 			
