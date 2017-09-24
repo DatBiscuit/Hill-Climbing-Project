@@ -157,7 +157,7 @@ public class HelloWorld extends Application {
 		    		EvaluationGrid.createResult();
 		    		System.out.println();
 		    		EvaluationGrid.printResultTable();
-		    		BHC(EvaluationGrid.eval,50);
+		    		BHC(EvaluationGrid.eval,200);
 		    		
 		    		
 		    		
@@ -195,29 +195,43 @@ public class HelloWorld extends Application {
 	    }
 	public static MinTurnNode[][] BHC(MinTurnNode[][] start, int it){
 		System.out.println("BHC: \n");
-
 		Formatter file = null;
 		int n = start.length-1;
-		MinTurnNode[][] temp = start;
+		int s,f;
+		int[] pre;
+		int sminpath= start[n][n].minpath;
+		
+		
+		
 		try {
-			file = new Formatter("C:\\Users\\Travis\\Desktop\\AIproject1\\BHCResults.txt");
+			file = new Formatter("BHCResults.txt");
 			
 		}catch(FileNotFoundException e){
 			System.out.println("Error/n/n/n/n");
 		}	
-		int s,f;
+		
 		while(it!=0){
 			s = Calendar.getInstance().get(Calendar.MILLISECOND);
-			EvaluationGrid.BasicHillClimb();
+			pre = EvaluationGrid.BasicHillClimb();
 		
+			System.out.println(start[n][n].minpath+" "+sminpath);
+			
 			EvaluationGrid.createGraph();
 			EvaluationGrid.printTable();
 			EvaluationGrid.createResult();
+			
+			System.out.println(start[n][n].minpath+" "+sminpath);
+			
 			System.out.println();
 			EvaluationGrid.printResultTable();
 	
-			if(start[n][n].value>temp[n][n].value){
-				start = temp;
+			if(start[n][n].minpath<sminpath){
+				start[pre[1]][pre[2]].value= pre[0];
+				System.out.println("r: "+pre[1]+" c: "+pre[2]+" pre val: "+pre[0]);
+				EvaluationGrid.createGraph();
+				EvaluationGrid.printTable();
+				EvaluationGrid.createResult();
+				
 			}
 			it--;
 			f = Calendar.getInstance().get(Calendar.MILLISECOND);
@@ -225,7 +239,7 @@ public class HelloWorld extends Application {
 			System.out.println("Start: "+s+"\nFinish: "+f+"\nTime Taken: "+(f-s));
 			if(file!=null) {
 				System.out.println("Its writing");
-				file.format("%s %d %s %d %s %d %s","Start: ",s,"End: ",f,"Total Time: ",(f-s),"\r\n");
+				file.format("%s %d %s %d %s %d %s %d %s","Start: ",s,"End: ",f,"Total Time: ",(f-s),"Evaluation Val: ",start[n][n].minpath,"\r\n");
 			}	
 		}
 		

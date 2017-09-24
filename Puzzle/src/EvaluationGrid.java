@@ -40,6 +40,7 @@ public class EvaluationGrid {
 		for(int i = 0; i< eval.length;i++){
 			for(int j = 0; j<eval.length;j++){
 				dis = eval[i][j].value;
+				eval[i][j].minpath = -1;
 				if(i+dis<eval.length){
 					eval[i][j].south = eval[i+dis][j];
 				}
@@ -141,7 +142,8 @@ public class EvaluationGrid {
 	}
 	
 
-	public static void BasicHillClimb(){
+	public static int[] BasicHillClimb(){
+		int[] pre = new int[3];
 		Random rand = new Random();
         int val = rand.nextInt(eval.length);
         while(val == 0) {
@@ -153,9 +155,13 @@ public class EvaluationGrid {
         	r = rand.nextInt(eval.length);
         	c = rand.nextInt(eval.length);
         }
+        pre[0]=eval[r][c].value;
+        pre[1] = r;
+        pre[2] = c;
         
         eval[r][c].value=val;
         //create graph,result then check for better or no
+        return pre;
         
 	}
 
