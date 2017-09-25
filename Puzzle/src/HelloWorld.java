@@ -1,9 +1,8 @@
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Calendar;
 import java.util.Formatter;
+import java.util.Optional;
 import java.util.Random;
-import java.util.Scanner;
 
 import Evaluation.MinTurnNode;
 import javafx.application.Application;
@@ -12,11 +11,17 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -24,6 +29,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 
 public class HelloWorld extends Application {
@@ -39,32 +45,18 @@ public class HelloWorld extends Application {
 		launch(args);
 	}
 
-	@Override
+	
 	public void start(Stage stage) throws Exception {
-		/*
-		TabPane tabPane = new TabPane();
-
-        BorderPane borderPane = new BorderPane();
-        for (int i = 0; i < 5; i++) {
-            Tab tab = new Tab();
-            tab.setText("Tab" + i);
-            HBox hbox = new HBox();
-            hbox.getChildren().add(new Label("Tab" + i));
-            hbox.setAlignment(Pos.CENTER);
-            tab.setContent(hbox);
-            tabPane.getTabs().add(tab);
-        }
-        // bind to take available space
-        borderPane.prefHeightProperty().bind(scene.heightProperty());
-        borderPane.prefWidthProperty().bind(scene.widthProperty());
-        
-        borderPane.setCenter(tabPane);
-        root.getChildren().add(borderPane);
-        */
 		
 		stage.setTitle("AI Project 1");
 		
+		
+		//setting up the tabs
 		TabPane tabs = new TabPane();
+		Tab buttons = new Tab();
+		buttons.setContent(createButtons());
+		buttons.setText("Options");
+		tabs.getTabs().add(buttons);
 		Tab gridtab = new Tab();
 		Tab evaltab = new Tab();
 		
@@ -99,9 +91,8 @@ public class HelloWorld extends Application {
 		        //where the stage will change to the matrix
 		    	if ((size.getText() != null && !size.getText().isEmpty())) {
 		    		
-		    		/*Tries to see if the proper input was put in
-		    		 * proper input includes only whole number digits
-		    		 */
+		    		//Tries to see if the proper input was put in
+		    		//proper input includes only whole number digits
 		    		try {
 		    		if(Integer.parseInt(size.getText())<=1){
 		    			throw new Exception();
@@ -157,8 +148,9 @@ public class HelloWorld extends Application {
 		    		EvaluationGrid.createResult();
 		    		System.out.println();
 		    		EvaluationGrid.printResultTable();
+		    		
 		    		//BHC(EvaluationGrid.eval ,200);
-		    		HCR(EvaluationGrid.eval,200,5);
+		    		//HCR(EvaluationGrid.eval,200,5);
 		    		
 		    		
 		    		//setting up second tab
@@ -187,12 +179,211 @@ public class HelloWorld extends Application {
 		stage.show();
 		
 	}
+
+	/*
+	 * Function to add the grid tab with all the options
+	 */
+	  public static GridPane createButtons() {
+	  
+	    Button bHC = new Button("Basic Hill Climbing");
+	    Button hCRR = new Button("Hill Climbing with Random Restarts");
+	    Button hCRW = new Button("Hill Climbing with Random Walk");
+	    Button sA = new Button("Simulated Anealing");
+	    Button pB = new Button("Population-Based");
+	    
+	    
+	    //put in respect action for each button
+	    bHC.setOnAction(new EventHandler<ActionEvent>() {
+			 
+		    @Override
+		    public void handle(ActionEvent e) {
+		    	int iter = 0;
+		    	TextInputDialog dialog;
+		    	dialog = new TextInputDialog();
+                dialog.initOwner(stage);
+                dialog.setTitle("Basic Hill Climb");
+                dialog.setContentText("Enter Number of Iterations: ");
+                Optional<String> result = dialog.showAndWait();
+                if(result.isPresent()) {
+                	try {
+                	if(Integer.parseInt(result.get())<=0){
+		    			throw new Exception();
+		    		}	
+		    		iter = Integer.parseInt(result.get());
+                		
+                	} catch(Exception ex) {
+                		errDialog("Not proper input. Try numbers that are 1 or greater");
+                	}
+                	
+                	//DO BASIC HILL CLIMB
+                	BHC(EvaluationGrid.eval , iter);
+                }
+		    }
+		    });
+
+	    hCRR.setOnAction(new EventHandler<ActionEvent>() {
+			 
+		    @Override
+		    public void handle(ActionEvent e) {
+		    	int iters = 0;
+		    	int rand = 0;
+		    	Dialog<Pair<String, String>> dialog = new Dialog<>();
+		        dialog.setTitle("Hill Climbing with Random Restarts");
+
+		        // Set the button types.
+		        ButtonType enter = new ButtonType("OK", ButtonData.OK_DONE);
+		        
+		        dialog.getDialogPane().getButtonTypes().addAll(enter, ButtonType.CANCEL);
+		        
+
+		        GridPane gridPane = new GridPane();
+		        gridPane.setHgap(10);
+		        gridPane.setVgap(10);
+		        gridPane.setPadding(new Insets(20, 150, 10, 10));
+
+		        TextField iter = new TextField();
+		        TextField rest = new TextField();
+
+		        gridPane.add(new Label("Iterations:"),0,0);
+		        gridPane.add(iter, 1, 0);
+		        gridPane.add(new Label("Random Restart:"), 2, 0);
+		        gridPane.add(rest, 3, 0);
+
+		        dialog.getDialogPane().setContent(gridPane);
+		        
+		        //lambda function to see if the okay button was hit
+		        dialog.setResultConverter(dialogButton -> {
+		            if (dialogButton == enter) {
+		            	return new Pair<>(iter.getText(), rest.getText());
+		            }
+		            return null;
+		        });
+		        
+		        Optional<Pair<String, String>> result = dialog.showAndWait();
+		
+		        if(result.equals(Optional.empty())) {
+		        	return;
+		        }
+		        
+		        //collect data from user
+		        try {
+	        		if(Integer.parseInt(result.get().getKey()) < 1 || Integer.parseInt(result.get().getValue()) < 1) {
+	        			throw new Exception();
+	        		}
+	        		iters = Integer.parseInt(iter.getText());
+	        		rand = Integer.parseInt(rest.getText());
+	        	} catch(Exception ex) {
+	        		errDialog("Not proper input. Try numbers that are 1 or greater");
+	        		
+	        	}
+		        //Do hill climb with random restarts
+		        HCR(EvaluationGrid.eval,iters,rand);
+		    }
+		    });
+	    
+	    hCRW.setOnAction(new EventHandler<ActionEvent>() {
+			 
+		    @Override
+		    public void handle(ActionEvent e) {
+		    	int iters = 0;
+		    	int prob = 0;
+		    	Dialog<Pair<String, String>> dialog = new Dialog<>();
+		        dialog.setTitle("Hill Climbing with Random Restarts");
+
+		        // Set the button types.
+		        ButtonType enter = new ButtonType("OK", ButtonData.OK_DONE);
+		        
+		        dialog.getDialogPane().getButtonTypes().addAll(enter, ButtonType.CANCEL);
+		        
+
+		        GridPane gridPane = new GridPane();
+		        gridPane.setHgap(10);
+		        gridPane.setVgap(10);
+		        gridPane.setPadding(new Insets(20, 150, 10, 10));
+
+		        TextField iter = new TextField();
+		        TextField p = new TextField();
+
+		        gridPane.add(new Label("Iterations:"),0,0);
+		        gridPane.add(iter, 1, 0);
+		        gridPane.add(new Label("Probability:"), 2, 0);
+		        gridPane.add(p, 3, 0);
+
+		        dialog.getDialogPane().setContent(gridPane);
+		        
+		        //lambda function to see if the okay button was hit
+		        dialog.setResultConverter(dialogButton -> {
+		            if (dialogButton == enter) {
+		            	return new Pair<>(iter.getText(), p.getText());
+		            }
+		            return null;
+		        });
+		        
+		        Optional<Pair<String, String>> result = dialog.showAndWait();
+		
+		        if(result.equals(Optional.empty())) {
+		        	return;
+		        }
+		        
+		        //collect data from user
+		        try {
+	        		if(Integer.parseInt(result.get().getKey()) < 1 || Integer.parseInt(result.get().getValue()) > 1 || Integer.parseInt(result.get().getValue()) < 0) {
+	        			throw new Exception();
+	        		}
+	        		iters = Integer.parseInt(iter.getText());
+	        		prob = Integer.parseInt(p.getText());
+	        	} catch(Exception ex) {
+	        		errDialog("Not proper input. Try numbers that are 1 or greater");
+	        		
+	        	}
+		        //Do hill climb with random walk
+
+		    }
+		    });
+	    
+	    sA.setOnAction(new EventHandler<ActionEvent>() {
+			 
+		    @Override
+		    public void handle(ActionEvent e) {
+		    }
+		    });
+	    
+	    pB.setOnAction(new EventHandler<ActionEvent>() {
+			 
+		    @Override
+		    public void handle(ActionEvent e) {
+		    }
+		    });
+	    
+	    
+	    GridPane gridPane = new GridPane();
+
+	    //addes the buttons to the grid
+	    gridPane.add(bHC, 0, 4, 2, 2);
+	    gridPane.add(hCRR, 0, 10, 3, 3);
+	    gridPane.add(hCRW, 0, 15, 3, 3);
+	    gridPane.add(sA, 0, 22, 2, 2);
+	    gridPane.add(pB, 0, 24, 2, 2);
+
+	    return gridPane;
+	  }
 	
 	
 	 public static void changeScene(Scene scene, Stage stage) {
 	    	stage.setScene(scene);
 	    	stage.show();
-	    }
+	 }
+	 
+	 public static void errDialog(String emessage) {
+		   Alert alert = new Alert(AlertType.ERROR);
+			alert.initOwner(stage);
+			alert.setTitle("ALERT ERROR");
+			alert.setHeaderText("ERROR");
+			alert.setContentText(emessage);
+			alert.showAndWait();
+	   }
+	 
+	 
 	public static MinTurnNode[][] BHC(MinTurnNode[][] start, int it){
 		System.out.println("BHC: \n");
 		Formatter file = null;
