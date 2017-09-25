@@ -113,6 +113,30 @@ public class EvaluationGrid {
 		
 	}
 	
+	public static GridPane rePrintTable() {
+		GridPane root = new GridPane();
+		
+		for(int i = 0; i < eval.length; i++) {
+			for(int j = 0; j < eval.length; j++) {
+				//setting the text for the GUI
+				TextField tf = new TextField();
+				tf.setPrefHeight(50);
+                tf.setPrefWidth(50);
+                tf.setAlignment(Pos.CENTER);
+                tf.setEditable(false);
+                if(eval[i][j].minpath == -1) {
+                	tf.setText(" X ");
+                } else {
+                	tf.setText(" " + eval[i][j].value + " ");
+                }
+                root.setRowIndex(tf,i);
+                root.setColumnIndex(tf,j);    
+                root.getChildren().add(tf);
+			}
+		}
+		return root;
+	}
+	
 	public static GridPane printResultTable() {
 		GridPane root = new GridPane();
 		int evalFunction = 0;

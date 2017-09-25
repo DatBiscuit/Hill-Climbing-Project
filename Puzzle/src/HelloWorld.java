@@ -39,6 +39,8 @@ public class HelloWorld extends Application {
 	public static Scene scene2;
 	public static int mSize;
 	public static GridPane root;
+	public static Tab gridTab;
+	public static Tab evalTab;
 	
 	
 	public static void main(String[] args) {
@@ -59,6 +61,9 @@ public class HelloWorld extends Application {
 		tabs.getTabs().add(buttons);
 		Tab gridtab = new Tab();
 		Tab evaltab = new Tab();
+		
+		//setting tabs
+		setTabs(gridtab, evaltab);
 		
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.CENTER);
@@ -179,6 +184,20 @@ public class HelloWorld extends Application {
 		stage.show();
 		
 	}
+	
+	public static void setTabs(Tab g, Tab e) {
+		gridTab = g;
+		evalTab = e;
+		
+	}
+	
+	public static Tab getTabs(char c) {
+		if(c == 'g')return gridTab;
+		
+		if(c == 'e') return evalTab;
+		
+		return null;
+	}
 
 	/*
 	 * Function to add the grid tab with all the options
@@ -217,6 +236,9 @@ public class HelloWorld extends Application {
                 	
                 	//DO BASIC HILL CLIMB
                 	BHC(EvaluationGrid.eval , iter);
+                	evalTab.setContent(EvaluationGrid.printResultTable());
+                	gridTab.setContent(EvaluationGrid.rePrintTable());
+                	
                 }
 		    }
 		    });
@@ -278,6 +300,8 @@ public class HelloWorld extends Application {
 	        	}
 		        //Do hill climb with random restarts
 		        HCR(EvaluationGrid.eval,iters,rand);
+		        evalTab.setContent(EvaluationGrid.printResultTable());
+            	gridTab.setContent(EvaluationGrid.rePrintTable());
 		    }
 		    });
 	    
@@ -338,6 +362,8 @@ public class HelloWorld extends Application {
 	        	}
 		        //Do hill climb with random walk
 		        HCW(EvaluationGrid.eval,iters,prob);
+		        evalTab.setContent(EvaluationGrid.printResultTable());
+            	gridTab.setContent(EvaluationGrid.rePrintTable());
 
 		    }
 		    });
@@ -346,6 +372,71 @@ public class HelloWorld extends Application {
 			 
 		    @Override
 		    public void handle(ActionEvent e) {
+		    	int iter = 0;
+		    	double temp = 0;
+		    	double decay = 0;
+		    	Dialog<Results> dialog = new Dialog<>();
+		    	dialog.setTitle("Simulating Anealing");
+		    	
+		    	// Set the button types.
+		        ButtonType enter = new ButtonType("OK", ButtonData.OK_DONE);
+		        
+		        dialog.getDialogPane().getButtonTypes().addAll(enter, ButtonType.CANCEL);
+		        
+
+		        GridPane gridPane = new GridPane();
+		        gridPane.setHgap(10);
+		        gridPane.setVgap(10);
+		        gridPane.setPadding(new Insets(20, 150, 10, 10));
+
+		        TextField i = new TextField();
+		        TextField t = new TextField();
+		        TextField d = new TextField();
+
+		        gridPane.add(new Label("Iterations:"),0,0);
+		        gridPane.add(i, 1, 0);
+		        gridPane.add(new Label("Temperature:"), 2, 0);
+		        gridPane.add(t, 3, 0);
+		        gridPane.add(new Label("Decay:"), 4, 0);
+		        gridPane.add(d, 5, 0);
+
+		        dialog.getDialogPane().setContent(gridPane);
+		        
+		      //lambda function to see if the okay button was hit
+		        dialog.setResultConverter(dialogButton -> {
+		            if (dialogButton == enter) {
+		            	return new Results(i.getText(), t.getText(), d.getText());
+		            }
+		            return null;
+		        });
+		        
+		        Optional<Results> result = dialog.showAndWait();
+				
+		        if(result.equals(Optional.empty())) {
+		        	return;
+		        }
+		        
+		        //collect data from user
+		        try {
+	        		if(Integer.parseInt(result.get().iter) < 1 
+	        				|| Double.parseDouble(result.get().temp) > 1 
+	        				|| Double.parseDouble(result.get().temp) < 0 
+	        				|| Double.parseDouble(result.get().decay) > 1 
+	        				|| Double.parseDouble(result.get().decay) < 0)  {
+	        			throw new Exception();
+	        		}
+	        		iter = Integer.parseInt(i.getText());
+	        		temp = Double.parseDouble(t.getText());
+	        		decay = Double.parseDouble(d.getText());
+	        	} catch(Exception ex) {
+	        		errDialog("Not proper input. Try numbers that are 1 or greater");
+	        		
+	        	}
+		        //Do anealing
+		        SA(EvaluationGrid.eval,iter,temp,decay);
+		        evalTab.setContent(EvaluationGrid.printResultTable());
+            	gridTab.setContent(EvaluationGrid.rePrintTable());
+		        
 		    }
 		    });
 	    
@@ -359,7 +450,7 @@ public class HelloWorld extends Application {
 	    
 	    GridPane gridPane = new GridPane();
 
-	    //addes the buttons to the grid
+	    //adds the buttons to the grid
 	    gridPane.add(bHC, 0, 4, 2, 2);
 	    gridPane.add(hCRR, 0, 10, 3, 3);
 	    gridPane.add(hCRW, 0, 15, 3, 3);
@@ -382,7 +473,20 @@ public class HelloWorld extends Application {
 			alert.setHeaderText("ERROR");
 			alert.setContentText(emessage);
 			alert.showAndWait();
-	   }
+	 }
+	 
+	 private static class Results {
+
+	        String iter;
+	        String temp;
+	        String decay;
+
+	        public Results(String a, String b, String c) {
+	        	this.iter = a;
+	        	this.temp = b;
+	        	this.decay = c;
+	        }
+	    }
 	 
 	 
 	public static MinTurnNode[][] BHC(MinTurnNode[][] start, int it){
