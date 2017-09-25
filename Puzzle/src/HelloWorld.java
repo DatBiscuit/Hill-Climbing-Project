@@ -286,7 +286,7 @@ public class HelloWorld extends Application {
 		    @Override
 		    public void handle(ActionEvent e) {
 		    	int iters = 0;
-		    	int prob = 0;
+		    	double prob = 0;
 		    	Dialog<Pair<String, String>> dialog = new Dialog<>();
 		        dialog.setTitle("Hill Climbing with Random Restarts");
 
@@ -327,11 +327,11 @@ public class HelloWorld extends Application {
 		        
 		        //collect data from user
 		        try {
-	        		if(Integer.parseInt(result.get().getKey()) < 1 || Integer.parseInt(result.get().getValue()) > 1 || Integer.parseInt(result.get().getValue()) < 0) {
+	        		if(Integer.parseInt(result.get().getKey()) < 1 || Double.parseDouble(result.get().getValue()) > 1 || Double.parseDouble(result.get().getValue()) < 0) {
 	        			throw new Exception();
 	        		}
 	        		iters = Integer.parseInt(iter.getText());
-	        		prob = Integer.parseInt(p.getText());
+	        		prob = Double.parseDouble(p.getText());
 	        	} catch(Exception ex) {
 	        		errDialog("Not proper input. Try numbers that are 1 or greater");
 	        		
