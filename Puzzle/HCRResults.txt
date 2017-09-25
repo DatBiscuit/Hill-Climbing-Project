@@ -1,242 +1,62 @@
 RESET 
-Start:  847 End:  866 Total Time:  19 Evaluation Val:  -1 
-Start:  866 End:  877 Total Time:  11 Evaluation Val:  -1 
-Start:  877 End:  887 Total Time:  10 Evaluation Val:  -1 
-Start:  887 End:  896 Total Time:  9 Evaluation Val:  -1 
-Start:  896 End:  905 Total Time:  9 Evaluation Val:  -1 
+Start:  604 End:  605 Total Time:  1 Evaluation Val:  6 
+Start:  606 End:  607 Total Time:  1 Evaluation Val:  6 
+Start:  608 End:  609 Total Time:  1 Evaluation Val:  6 
+Start:  609 End:  610 Total Time:  1 Evaluation Val:  6 
+Start:  610 End:  611 Total Time:  1 Evaluation Val:  6 
 RESET 
-Start:  905 End:  916 Total Time:  11 Evaluation Val:  -1 
-Start:  916 End:  932 Total Time:  16 Evaluation Val:  -1 
-Start:  932 End:  942 Total Time:  10 Evaluation Val:  -1 
-Start:  942 End:  950 Total Time:  8 Evaluation Val:  -1 
-Start:  950 End:  957 Total Time:  7 Evaluation Val:  -1 
+Start:  611 End:  613 Total Time:  2 Evaluation Val:  6 
+Start:  613 End:  614 Total Time:  1 Evaluation Val:  6 
+Start:  614 End:  616 Total Time:  2 Evaluation Val:  6 
+Start:  616 End:  617 Total Time:  1 Evaluation Val:  6 
+Start:  618 End:  619 Total Time:  1 Evaluation Val:  6 
 RESET 
-Start:  957 End:  966 Total Time:  9 Evaluation Val:  -1 
-Start:  966 End:  973 Total Time:  7 Evaluation Val:  -1 
-Start:  973 End:  980 Total Time:  7 Evaluation Val:  -1 
-Start:  980 End:  986 Total Time:  6 Evaluation Val:  -1 
-Start:  986 End:  993 Total Time:  7 Evaluation Val:  -1 
+Start:  619 End:  622 Total Time:  3 Evaluation Val:  6 
+Start:  622 End:  623 Total Time:  1 Evaluation Val:  6 
+Start:  624 End:  625 Total Time:  1 Evaluation Val:  6 
+Start:  626 End:  628 Total Time:  2 Evaluation Val:  6 
+Start:  628 End:  629 Total Time:  1 Evaluation Val:  6 
 RESET 
-Start:  993 End:  1 Total Time:  -992 Evaluation Val:  -1 
-Start:  1 End:  7 Total Time:  6 Evaluation Val:  -1 
-Start:  7 End:  13 Total Time:  6 Evaluation Val:  -1 
-Start:  14 End:  20 Total Time:  6 Evaluation Val:  -1 
-Start:  20 End:  26 Total Time:  6 Evaluation Val:  -1 
+Start:  629 End:  631 Total Time:  2 Evaluation Val:  6 
+Start:  631 End:  632 Total Time:  1 Evaluation Val:  6 
+Start:  632 End:  633 Total Time:  1 Evaluation Val:  6 
+Start:  634 End:  635 Total Time:  1 Evaluation Val:  6 
+Start:  636 End:  638 Total Time:  2 Evaluation Val:  6 
 RESET 
-Start:  26 End:  34 Total Time:  8 Evaluation Val:  -1 
-Start:  35 End:  44 Total Time:  9 Evaluation Val:  -1 
-Start:  44 End:  50 Total Time:  6 Evaluation Val:  -1 
-Start:  50 End:  56 Total Time:  6 Evaluation Val:  -1 
-Start:  56 End:  63 Total Time:  7 Evaluation Val:  -1 
+Start:  638 End:  639 Total Time:  1 Evaluation Val:  6 
+Start:  640 End:  641 Total Time:  1 Evaluation Val:  6 
+Start:  641 End:  642 Total Time:  1 Evaluation Val:  6 
+Start:  643 End:  644 Total Time:  1 Evaluation Val:  6 
+Start:  644 End:  645 Total Time:  1 Evaluation Val:  6 
 RESET 
-Start:  63 End:  76 Total Time:  13 Evaluation Val:  -1 
-Start:  76 End:  81 Total Time:  5 Evaluation Val:  -1 
-Start:  81 End:  86 Total Time:  5 Evaluation Val:  -1 
-Start:  86 End:  91 Total Time:  5 Evaluation Val:  -1 
-Start:  91 End:  96 Total Time:  5 Evaluation Val:  -1 
+Start:  645 End:  646 Total Time:  1 Evaluation Val:  6 
+Start:  647 End:  650 Total Time:  3 Evaluation Val:  6 
+Start:  650 End:  651 Total Time:  1 Evaluation Val:  6 
+Start:  651 End:  653 Total Time:  2 Evaluation Val:  6 
+Start:  653 End:  654 Total Time:  1 Evaluation Val:  6 
 RESET 
-Start:  96 End:  102 Total Time:  6 Evaluation Val:  -1 
-Start:  102 End:  106 Total Time:  4 Evaluation Val:  -1 
-Start:  106 End:  110 Total Time:  4 Evaluation Val:  -1 
-Start:  110 End:  114 Total Time:  4 Evaluation Val:  -1 
-Start:  114 End:  118 Total Time:  4 Evaluation Val:  -1 
+Start:  655 End:  656 Total Time:  1 Evaluation Val:  6 
+Start:  656 End:  657 Total Time:  1 Evaluation Val:  6 
+Start:  658 End:  659 Total Time:  1 Evaluation Val:  6 
+Start:  659 End:  660 Total Time:  1 Evaluation Val:  6 
+Start:  660 End:  661 Total Time:  1 Evaluation Val:  6 
 RESET 
-Start:  118 End:  124 Total Time:  6 Evaluation Val:  -1 
-Start:  124 End:  128 Total Time:  4 Evaluation Val:  -1 
-Start:  128 End:  132 Total Time:  4 Evaluation Val:  -1 
-Start:  132 End:  135 Total Time:  3 Evaluation Val:  -1 
-Start:  136 End:  139 Total Time:  3 Evaluation Val:  -1 
+Start:  661 End:  662 Total Time:  1 Evaluation Val:  6 
+Start:  663 End:  664 Total Time:  1 Evaluation Val:  6 
+Start:  664 End:  665 Total Time:  1 Evaluation Val:  6 
+Start:  665 End:  666 Total Time:  1 Evaluation Val:  6 
+Start:  666 End:  667 Total Time:  1 Evaluation Val:  6 
 RESET 
-Start:  139 End:  145 Total Time:  6 Evaluation Val:  -1 
-Start:  145 End:  149 Total Time:  4 Evaluation Val:  -1 
-Start:  149 End:  153 Total Time:  4 Evaluation Val:  -1 
-Start:  153 End:  157 Total Time:  4 Evaluation Val:  -1 
-Start:  157 End:  166 Total Time:  9 Evaluation Val:  -1 
+Start:  667 End:  669 Total Time:  2 Evaluation Val:  6 
+Start:  669 End:  670 Total Time:  1 Evaluation Val:  6 
+Start:  670 End:  671 Total Time:  1 Evaluation Val:  6 
+Start:  672 End:  673 Total Time:  1 Evaluation Val:  6 
+Start:  673 End:  674 Total Time:  1 Evaluation Val:  6 
 RESET 
-Start:  167 End:  176 Total Time:  9 Evaluation Val:  -1 
-Start:  176 End:  180 Total Time:  4 Evaluation Val:  -1 
-Start:  180 End:  184 Total Time:  4 Evaluation Val:  -1 
-Start:  184 End:  188 Total Time:  4 Evaluation Val:  -1 
-Start:  188 End:  192 Total Time:  4 Evaluation Val:  -1 
-RESET 
-Start:  192 End:  199 Total Time:  7 Evaluation Val:  -1 
-Start:  199 End:  203 Total Time:  4 Evaluation Val:  -1 
-Start:  203 End:  207 Total Time:  4 Evaluation Val:  -1 
-Start:  207 End:  211 Total Time:  4 Evaluation Val:  -1 
-Start:  211 End:  215 Total Time:  4 Evaluation Val:  -1 
-RESET 
-Start:  215 End:  220 Total Time:  5 Evaluation Val:  -1 
-Start:  220 End:  223 Total Time:  3 Evaluation Val:  -1 
-Start:  223 End:  226 Total Time:  3 Evaluation Val:  -1 
-Start:  227 End:  229 Total Time:  2 Evaluation Val:  -1 
-Start:  230 End:  233 Total Time:  3 Evaluation Val:  -1 
-RESET 
-Start:  233 End:  237 Total Time:  4 Evaluation Val:  -1 
-Start:  237 End:  240 Total Time:  3 Evaluation Val:  -1 
-Start:  240 End:  243 Total Time:  3 Evaluation Val:  -1 
-Start:  243 End:  251 Total Time:  8 Evaluation Val:  -1 
-Start:  251 End:  254 Total Time:  3 Evaluation Val:  -1 
-RESET 
-Start:  254 End:  259 Total Time:  5 Evaluation Val:  -1 
-Start:  259 End:  262 Total Time:  3 Evaluation Val:  -1 
-Start:  262 End:  265 Total Time:  3 Evaluation Val:  -1 
-Start:  265 End:  268 Total Time:  3 Evaluation Val:  -1 
-Start:  269 End:  271 Total Time:  2 Evaluation Val:  -1 
-RESET 
-Start:  272 End:  276 Total Time:  4 Evaluation Val:  -1 
-Start:  276 End:  279 Total Time:  3 Evaluation Val:  -1 
-Start:  279 End:  282 Total Time:  3 Evaluation Val:  -1 
-Start:  283 End:  285 Total Time:  2 Evaluation Val:  15 
-Start:  286 End:  288 Total Time:  2 Evaluation Val:  15 
-RESET 
-Start:  289 End:  294 Total Time:  5 Evaluation Val:  -1 
-Start:  294 End:  298 Total Time:  4 Evaluation Val:  -1 
-Start:  298 End:  301 Total Time:  3 Evaluation Val:  -1 
-Start:  301 End:  305 Total Time:  4 Evaluation Val:  -1 
-Start:  305 End:  309 Total Time:  4 Evaluation Val:  -1 
-RESET 
-Start:  309 End:  314 Total Time:  5 Evaluation Val:  -1 
-Start:  314 End:  318 Total Time:  4 Evaluation Val:  -1 
-Start:  318 End:  321 Total Time:  3 Evaluation Val:  16 
-Start:  321 End:  324 Total Time:  3 Evaluation Val:  16 
-Start:  324 End:  327 Total Time:  3 Evaluation Val:  16 
-RESET 
-Start:  327 End:  332 Total Time:  5 Evaluation Val:  -1 
-Start:  332 End:  336 Total Time:  4 Evaluation Val:  -1 
-Start:  336 End:  340 Total Time:  4 Evaluation Val:  -1 
-Start:  340 End:  344 Total Time:  4 Evaluation Val:  -1 
-Start:  344 End:  348 Total Time:  4 Evaluation Val:  -1 
-RESET 
-Start:  348 End:  354 Total Time:  6 Evaluation Val:  -1 
-Start:  354 End:  381 Total Time:  27 Evaluation Val:  -1 
-Start:  381 End:  385 Total Time:  4 Evaluation Val:  -1 
-Start:  385 End:  390 Total Time:  5 Evaluation Val:  -1 
-Start:  390 End:  395 Total Time:  5 Evaluation Val:  -1 
-RESET 
-Start:  395 End:  400 Total Time:  5 Evaluation Val:  -1 
-Start:  400 End:  405 Total Time:  5 Evaluation Val:  -1 
-Start:  405 End:  409 Total Time:  4 Evaluation Val:  -1 
-Start:  410 End:  414 Total Time:  4 Evaluation Val:  -1 
-Start:  414 End:  418 Total Time:  4 Evaluation Val:  -1 
-RESET 
-Start:  418 End:  424 Total Time:  6 Evaluation Val:  -1 
-Start:  424 End:  432 Total Time:  8 Evaluation Val:  -1 
-Start:  432 End:  435 Total Time:  3 Evaluation Val:  -1 
-Start:  436 End:  439 Total Time:  3 Evaluation Val:  -1 
-Start:  439 End:  443 Total Time:  4 Evaluation Val:  -1 
-RESET 
-Start:  443 End:  448 Total Time:  5 Evaluation Val:  -1 
-Start:  448 End:  451 Total Time:  3 Evaluation Val:  -1 
-Start:  451 End:  455 Total Time:  4 Evaluation Val:  -1 
-Start:  455 End:  458 Total Time:  3 Evaluation Val:  -1 
-Start:  458 End:  461 Total Time:  3 Evaluation Val:  -1 
-RESET 
-Start:  461 End:  466 Total Time:  5 Evaluation Val:  -1 
-Start:  466 End:  469 Total Time:  3 Evaluation Val:  -1 
-Start:  470 End:  473 Total Time:  3 Evaluation Val:  -1 
-Start:  473 End:  476 Total Time:  3 Evaluation Val:  -1 
-Start:  476 End:  490 Total Time:  14 Evaluation Val:  -1 
-RESET 
-Start:  490 End:  495 Total Time:  5 Evaluation Val:  -1 
-Start:  495 End:  498 Total Time:  3 Evaluation Val:  -1 
-Start:  498 End:  502 Total Time:  4 Evaluation Val:  -1 
-Start:  502 End:  505 Total Time:  3 Evaluation Val:  -1 
-Start:  506 End:  509 Total Time:  3 Evaluation Val:  -1 
-RESET 
-Start:  509 End:  514 Total Time:  5 Evaluation Val:  -1 
-Start:  514 End:  517 Total Time:  3 Evaluation Val:  -1 
-Start:  517 End:  521 Total Time:  4 Evaluation Val:  -1 
-Start:  521 End:  524 Total Time:  3 Evaluation Val:  -1 
-Start:  524 End:  527 Total Time:  3 Evaluation Val:  -1 
-RESET 
-Start:  527 End:  532 Total Time:  5 Evaluation Val:  -1 
-Start:  532 End:  536 Total Time:  4 Evaluation Val:  -1 
-Start:  536 End:  539 Total Time:  3 Evaluation Val:  -1 
-Start:  539 End:  542 Total Time:  3 Evaluation Val:  -1 
-Start:  542 End:  546 Total Time:  4 Evaluation Val:  -1 
-RESET 
-Start:  546 End:  550 Total Time:  4 Evaluation Val:  -1 
-Start:  550 End:  554 Total Time:  4 Evaluation Val:  -1 
-Start:  554 End:  557 Total Time:  3 Evaluation Val:  -1 
-Start:  557 End:  560 Total Time:  3 Evaluation Val:  -1 
-Start:  560 End:  564 Total Time:  4 Evaluation Val:  -1 
-RESET 
-Start:  564 End:  568 Total Time:  4 Evaluation Val:  -1 
-Start:  569 End:  572 Total Time:  3 Evaluation Val:  -1 
-Start:  572 End:  575 Total Time:  3 Evaluation Val:  -1 
-Start:  575 End:  583 Total Time:  8 Evaluation Val:  -1 
-Start:  583 End:  587 Total Time:  4 Evaluation Val:  -1 
-RESET 
-Start:  587 End:  595 Total Time:  8 Evaluation Val:  -1 
-Start:  595 End:  599 Total Time:  4 Evaluation Val:  -1 
-Start:  599 End:  602 Total Time:  3 Evaluation Val:  -1 
-Start:  602 End:  605 Total Time:  3 Evaluation Val:  -1 
-Start:  605 End:  609 Total Time:  4 Evaluation Val:  -1 
-RESET 
-Start:  609 End:  614 Total Time:  5 Evaluation Val:  -1 
-Start:  614 End:  617 Total Time:  3 Evaluation Val:  -1 
-Start:  617 End:  621 Total Time:  4 Evaluation Val:  -1 
-Start:  621 End:  624 Total Time:  3 Evaluation Val:  -1 
-Start:  624 End:  627 Total Time:  3 Evaluation Val:  -1 
-RESET 
-Start:  627 End:  632 Total Time:  5 Evaluation Val:  -1 
-Start:  632 End:  636 Total Time:  4 Evaluation Val:  -1 
-Start:  636 End:  639 Total Time:  3 Evaluation Val:  -1 
-Start:  639 End:  642 Total Time:  3 Evaluation Val:  -1 
-Start:  642 End:  646 Total Time:  4 Evaluation Val:  -1 
-RESET 
-Start:  646 End:  650 Total Time:  4 Evaluation Val:  -1 
-Start:  650 End:  654 Total Time:  4 Evaluation Val:  -1 
-Start:  654 End:  657 Total Time:  3 Evaluation Val:  -1 
-Start:  657 End:  661 Total Time:  4 Evaluation Val:  -1 
-Start:  661 End:  664 Total Time:  3 Evaluation Val:  -1 
-RESET 
-Start:  664 End:  669 Total Time:  5 Evaluation Val:  -1 
-Start:  669 End:  673 Total Time:  4 Evaluation Val:  -1 
-Start:  673 End:  676 Total Time:  3 Evaluation Val:  -1 
-Start:  676 End:  679 Total Time:  3 Evaluation Val:  -1 
-Start:  680 End:  704 Total Time:  24 Evaluation Val:  -1 
-RESET 
-Start:  704 End:  709 Total Time:  5 Evaluation Val:  -1 
-Start:  709 End:  713 Total Time:  4 Evaluation Val:  -1 
-Start:  713 End:  716 Total Time:  3 Evaluation Val:  -1 
-Start:  716 End:  721 Total Time:  5 Evaluation Val:  -1 
-Start:  721 End:  724 Total Time:  3 Evaluation Val:  -1 
-RESET 
-Start:  724 End:  729 Total Time:  5 Evaluation Val:  -1 
-Start:  729 End:  733 Total Time:  4 Evaluation Val:  -1 
-Start:  733 End:  737 Total Time:  4 Evaluation Val:  -1 
-Start:  737 End:  740 Total Time:  3 Evaluation Val:  -1 
-Start:  740 End:  743 Total Time:  3 Evaluation Val:  -1 
-RESET 
-Start:  744 End:  748 Total Time:  4 Evaluation Val:  -1 
-Start:  748 End:  752 Total Time:  4 Evaluation Val:  -1 
-Start:  752 End:  755 Total Time:  3 Evaluation Val:  -1 
-Start:  755 End:  759 Total Time:  4 Evaluation Val:  -1 
-Start:  759 End:  762 Total Time:  3 Evaluation Val:  -1 
-RESET 
-Start:  762 End:  767 Total Time:  5 Evaluation Val:  -1 
-Start:  767 End:  771 Total Time:  4 Evaluation Val:  -1 
-Start:  771 End:  774 Total Time:  3 Evaluation Val:  -1 
-Start:  774 End:  778 Total Time:  4 Evaluation Val:  -1 
-Start:  778 End:  783 Total Time:  5 Evaluation Val:  -1 
-RESET 
-Start:  783 End:  788 Total Time:  5 Evaluation Val:  -1 
-Start:  788 End:  792 Total Time:  4 Evaluation Val:  -1 
-Start:  792 End:  816 Total Time:  24 Evaluation Val:  -1 
-Start:  816 End:  820 Total Time:  4 Evaluation Val:  -1 
-Start:  821 End:  825 Total Time:  4 Evaluation Val:  -1 
-RESET 
-Start:  825 End:  831 Total Time:  6 Evaluation Val:  -1 
-Start:  831 End:  834 Total Time:  3 Evaluation Val:  -1 
-Start:  834 End:  838 Total Time:  4 Evaluation Val:  -1 
-Start:  838 End:  842 Total Time:  4 Evaluation Val:  -1 
-Start:  842 End:  846 Total Time:  4 Evaluation Val:  -1 
-RESET 
-Start:  846 End:  852 Total Time:  6 Evaluation Val:  -1 
-Start:  852 End:  855 Total Time:  3 Evaluation Val:  -1 
-Start:  855 End:  859 Total Time:  4 Evaluation Val:  -1 
-Start:  859 End:  863 Total Time:  4 Evaluation Val:  -1 
-Start:  863 End:  866 Total Time:  3 Evaluation Val:  -1 
+Start:  674 End:  675 Total Time:  1 Evaluation Val:  6 
+Start:  676 End:  677 Total Time:  1 Evaluation Val:  6 
+Start:  677 End:  678 Total Time:  1 Evaluation Val:  6 
+Start:  678 End:  679 Total Time:  1 Evaluation Val:  6 
+Start:  679 End:  680 Total Time:  1 Evaluation Val:  6 
 
-Best Eval:  16
+Best Eval:  6

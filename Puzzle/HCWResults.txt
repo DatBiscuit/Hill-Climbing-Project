@@ -1,0 +1,100 @@
+UpStep 0.500000
+Start:  929 End:  948 Total Time:  19 Evaluation Val:  3 
+UpStep 0.500000
+Start:  948 End:  954 Total Time:  6 Evaluation Val:  3 
+UpStep 0.500000
+Start:  954 End:  960 Total Time:  6 Evaluation Val:  3 
+DownStep 0.500000
+Start:  960 End:  965 Total Time:  5 Evaluation Val:  3 
+DownStep 0.500000
+Start:  966 End:  973 Total Time:  7 Evaluation Val:  3 
+DownStep 0.500000
+Start:  974 End:  980 Total Time:  6 Evaluation Val:  3 
+UpStep 0.500000
+Start:  980 End:  985 Total Time:  5 Evaluation Val:  3 
+DownStep 0.500000
+Start:  985 End:  989 Total Time:  4 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  990 End:  993 Total Time:  3 Evaluation Val:  -1 
+UpStep 0.500000
+Start:  994 End:  997 Total Time:  3 Evaluation Val:  -1 
+UpStep 0.500000
+Start:  998 End:  1 Total Time:  -997 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  2 End:  7 Total Time:  5 Evaluation Val:  -1 
+UpStep 0.500000
+Start:  7 End:  10 Total Time:  3 Evaluation Val:  6 
+UpStep 0.500000
+Start:  11 End:  14 Total Time:  3 Evaluation Val:  6 
+UpStep 0.500000
+Start:  14 End:  18 Total Time:  4 Evaluation Val:  6 
+UpStep 0.500000
+Start:  18 End:  21 Total Time:  3 Evaluation Val:  6 
+UpStep 0.500000
+Start:  22 End:  25 Total Time:  3 Evaluation Val:  6 
+DownStep 0.500000
+Start:  25 End:  28 Total Time:  3 Evaluation Val:  6 
+UpStep 0.500000
+Start:  28 End:  30 Total Time:  2 Evaluation Val:  6 
+UpStep 0.500000
+Start:  31 End:  35 Total Time:  4 Evaluation Val:  6 
+UpStep 0.500000
+Start:  35 End:  43 Total Time:  8 Evaluation Val:  6 
+UpStep 0.500000
+Start:  45 End:  49 Total Time:  4 Evaluation Val:  6 
+UpStep 0.500000
+Start:  49 End:  54 Total Time:  5 Evaluation Val:  6 
+DownStep 0.500000
+Start:  55 End:  57 Total Time:  2 Evaluation Val:  6 
+DownStep 0.500000
+Start:  57 End:  59 Total Time:  2 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  59 End:  64 Total Time:  5 Evaluation Val:  -1 
+UpStep 0.500000
+Start:  65 End:  67 Total Time:  2 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  67 End:  72 Total Time:  5 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  73 End:  75 Total Time:  2 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  75 End:  77 Total Time:  2 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  77 End:  79 Total Time:  2 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  79 End:  81 Total Time:  2 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  81 End:  83 Total Time:  2 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  83 End:  85 Total Time:  2 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  85 End:  88 Total Time:  3 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  88 End:  94 Total Time:  6 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  94 End:  96 Total Time:  2 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  96 End:  98 Total Time:  2 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  98 End:  100 Total Time:  2 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  100 End:  102 Total Time:  2 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  102 End:  105 Total Time:  3 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  105 End:  106 Total Time:  1 Evaluation Val:  -1 
+UpStep 0.500000
+Start:  107 End:  109 Total Time:  2 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  109 End:  113 Total Time:  4 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  113 End:  114 Total Time:  1 Evaluation Val:  -1 
+UpStep 0.500000
+Start:  115 End:  116 Total Time:  1 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  116 End:  146 Total Time:  30 Evaluation Val:  -1 
+UpStep 0.500000
+Start:  147 End:  148 Total Time:  1 Evaluation Val:  -1 
+DownStep 0.500000
+Start:  149 End:  151 Total Time:  2 Evaluation Val:  -1 
+UpStep 0.500000
+Start:  151 End:  152 Total Time:  1 Evaluation Val:  3 

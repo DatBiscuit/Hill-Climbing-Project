@@ -337,6 +337,7 @@ public class HelloWorld extends Application {
 	        		
 	        	}
 		        //Do hill climb with random walk
+		        HCW(EvaluationGrid.eval,iters,prob);
 
 		    }
 		    });
@@ -531,10 +532,168 @@ public class HelloWorld extends Application {
 		
 	}
 	
+	public static MinTurnNode[][] HCW(MinTurnNode[][] start, int it, double p){
+		System.out.println("BHC: \n");
+		Formatter file = null;
+		int n = start.length-1;
+		int s,f;
+		int[] pre;
+		int sminpath;
+		Random rand = new Random();
+        double val ;
+		
+		
+		try {
+			file = new Formatter("HCWResults.txt");
+			
+		}catch(FileNotFoundException e){
+			System.out.println("Error/n/n/n/n");
+		}	
+		
+		while(it!=0){
+			
+			sminpath = start[n][n].minpath;
+			s = Calendar.getInstance().get(Calendar.MILLISECOND);
+			pre = EvaluationGrid.BasicHillClimb();
+		
+			//System.out.println(sminpath+" "+start[n][n].minpath);
+			
+			EvaluationGrid.createGraph();
+			EvaluationGrid.printTable();
+			EvaluationGrid.createResult();
+			
+			//System.out.println(sminpath+" "+start[n][n].minpath);
+			
+			System.out.println();
+			EvaluationGrid.printResultTable();
+	
+			val = rand.nextDouble();
+			//revert back to original grid
+			if(val>p){
+				file.format("%s %f\r\n","UpStep",p);
+				if(start[n][n].minpath < sminpath){
+					System.out.println(sminpath+" "+start[n][n].minpath);
+					start[pre[1]][pre[2]].value = pre[0];
+					System.out.println("r: "+pre[1]+" c: "+pre[2]+" pre val: "+pre[0]);
+					EvaluationGrid.createGraph();
+					EvaluationGrid.printTable();
+					EvaluationGrid.createResult();
+				
+				}
+			}else{
+				file.format("%s %f\r\n","DownStep",p);
+				if(start[n][n].minpath >= sminpath){
+					System.out.println(sminpath+" "+start[n][n].minpath);
+					start[pre[1]][pre[2]].value = pre[0];
+					System.out.println("r: "+pre[1]+" c: "+pre[2]+" pre val: "+pre[0]);
+					EvaluationGrid.createGraph();
+					EvaluationGrid.printTable();
+					EvaluationGrid.createResult();
+				
+					}
+			}
+			it--;
+			f = Calendar.getInstance().get(Calendar.MILLISECOND);
+			
+			System.out.println("Start: "+s+"\nFinish: "+f+"\nTime Taken: "+(f-s));
+			if(file!=null) {
+				System.out.println("Its writing");
+				file.format("%s %d %s %d %s %d %s %d %s","Start: ",s,"End: ",f,"Total Time: ",(f-s),"Evaluation Val: ",start[n][n].minpath,"\r\n");
+			}	
+		}
+		
+		file.close();
+		
+		return start;
+		
+	}
+
+	
+	
+	public static MinTurnNode[][] SA(MinTurnNode[][] start, int it, double t, double d){
+		System.out.println("BHC: \n");
+		Formatter file = null;
+		int n = start.length-1;
+		int s,f;
+		int[] pre;
+		int sminpath;
+		Random rand = new Random();
+        double val,p;
+		
+		
+		try {
+			file = new Formatter("HCWResults.txt");
+			
+		}catch(FileNotFoundException e){
+			System.out.println("Error/n/n/n/n");
+		}	
+		
+		while(it!=0){
+			
+			sminpath = start[n][n].minpath;
+			s = Calendar.getInstance().get(Calendar.MILLISECOND);
+			pre = EvaluationGrid.BasicHillClimb();
+		
+			//System.out.println(sminpath+" "+start[n][n].minpath);
+			
+			EvaluationGrid.createGraph();
+			EvaluationGrid.printTable();
+			EvaluationGrid.createResult();
+			
+			//System.out.println(sminpath+" "+start[n][n].minpath);
+			
+			System.out.println();
+			EvaluationGrid.printResultTable();
+	
+			p = Math.exp((start[n][n].minpath-sminpath)/t); //Probability p = e^(V(j')-V(j))/t
+			
+			val = rand.nextDouble();
+			//revert back to original grid
+			if(val>p){
+				file.format("%s %f\r\n","UpStep",p);
+				if(start[n][n].minpath < sminpath){
+					System.out.println(sminpath+" "+start[n][n].minpath);
+					start[pre[1]][pre[2]].value = pre[0];
+					System.out.println("r: "+pre[1]+" c: "+pre[2]+" pre val: "+pre[0]);
+					EvaluationGrid.createGraph();
+					EvaluationGrid.printTable();
+					EvaluationGrid.createResult();
+				
+				}
+			}else{
+				file.format("%s %f\r\n","DownStep",p);
+				if(start[n][n].minpath >= sminpath){
+					System.out.println(sminpath+" "+start[n][n].minpath);
+					start[pre[1]][pre[2]].value = pre[0];
+					System.out.println("r: "+pre[1]+" c: "+pre[2]+" pre val: "+pre[0]);
+					EvaluationGrid.createGraph();
+					EvaluationGrid.printTable();
+					EvaluationGrid.createResult();
+				
+					}
+			}
+			it--;
+			f = Calendar.getInstance().get(Calendar.MILLISECOND);
+			
+			System.out.println("Start: "+s+"\nFinish: "+f+"\nTime Taken: "+(f-s));
+			if(file!=null) {
+				System.out.println("Its writing");
+				file.format("%s %d %s %d %s %d %s %d %s","Start: ",s,"End: ",f,"Total Time: ",(f-s),"Evaluation Val: ",start[n][n].minpath,"\r\n");
+			}	
+			t= t*d; // temperature decays
+		}
+		
+		file.close();
+		
+		return start;
+		
+	}
+
 	
 	
 	
 	
 	
 	
-}
+	
+	}
