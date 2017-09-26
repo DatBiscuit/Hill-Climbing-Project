@@ -419,7 +419,7 @@ public class HelloWorld extends Application {
 		        //collect data from user
 		        try {
 	        		if(Integer.parseInt(result.get().iter) < 1 
-	        				|| Double.parseDouble(result.get().temp) =< 1 
+	        				|| Double.parseDouble(result.get().temp) <= 1 
 	        				
 	        				|| Double.parseDouble(result.get().decay) > 1 
 	        				|| Double.parseDouble(result.get().decay) < 0)  {

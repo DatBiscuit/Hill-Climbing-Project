@@ -83,9 +83,15 @@ public class PopulationGA {
 				for(int i = 0;i<size;i+=2) {
 					for(int j=0;j<n;j++) {
 						for(int k=0;k<rand1;k++) {
-								temp=pop[parent[i]][j][k].value;
-								pop[parent[i]][j][k].value=pop[parent[i+1]][j][k].value;
-								pop[parent[i+1]][j][k].value=temp;
+								if(k<rand1) {
+									EvaluationGrid.setTable(j,k,pop[parent[i+1]][j][k].value,nextGen[parent[i]]);
+									EvaluationGrid.setTable(j,k,pop[parent[i]][j][k].value,nextGen[parent[i+1]]);
+									
+									
+									temp=pop[parent[i]][j][k].value;
+									pop[parent[i]][j][k].value=pop[parent[i+1]][j][k].value;
+									pop[parent[i+1]][j][k].value=temp;
+								}
 						}
 					}
 				}
