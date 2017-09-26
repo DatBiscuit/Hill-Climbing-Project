@@ -446,6 +446,61 @@ public class HelloWorld extends Application {
 			 
 		    @Override
 		    public void handle(ActionEvent e) {
+		    	int iters = 0;
+		    	int size = 0;
+		    	Dialog<Pair<String, String>> dialog = new Dialog<>();
+		        dialog.setTitle("Population Based Algorithm");
+
+		        // Set the button types.
+		        ButtonType enter = new ButtonType("OK", ButtonData.OK_DONE);
+		        
+		        dialog.getDialogPane().getButtonTypes().addAll(enter, ButtonType.CANCEL);
+		        
+
+		        GridPane gridPane = new GridPane();
+		        gridPane.setHgap(10);
+		        gridPane.setVgap(10);
+		        gridPane.setPadding(new Insets(20, 150, 10, 10));
+
+		        TextField iter = new TextField();
+		        TextField p = new TextField();
+
+		        gridPane.add(new Label("Iterations:"),0,0);
+		        gridPane.add(iter, 1, 0);
+		        gridPane.add(new Label("Population Size:"), 2, 0);
+		        gridPane.add(p, 3, 0);
+
+		        dialog.getDialogPane().setContent(gridPane);
+		        
+		        //lambda function to see if the okay button was hit
+		        dialog.setResultConverter(dialogButton -> {
+		            if (dialogButton == enter) {
+		            	return new Pair<>(iter.getText(), p.getText());
+		            }
+		            return null;
+		        });
+		        
+		        Optional<Pair<String, String>> result = dialog.showAndWait();
+		
+		        if(result.equals(Optional.empty())) {
+		        	return;
+		        }
+		        
+		        //collect data from user
+		        try {
+	        		if(Integer.parseInt(result.get().getKey()) < 1 || Integer.parseInt(result.get().getValue()) < 1) {
+	        			throw new Exception();
+	        		}
+	        		iters = Integer.parseInt(iter.getText());
+	        		size = Integer.parseInt(p.getText());
+	        	} catch(Exception ex) {
+	        		errDialog("Not proper input. Try numbers that are 1 or greater");
+	        		
+	        	}
+		        //Do Population based algorithm
+		        MinTurnNode[][] fgrid = PopulationGA.Pop(size, mSize, iters);
+		        evalTab.setContent(EvaluationGrid.printResultTable(fgrid));
+            	gridTab.setContent(EvaluationGrid.rePrintTable(fgrid));
 		    }
 		    });
 	    
