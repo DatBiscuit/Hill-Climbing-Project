@@ -13,21 +13,21 @@ import Evaluation.MinTurnNode;
 public class EvaluationGrid {
 	
 	
-	public static MinTurnNode[][] eval;
-	public static MinTurnNode[][] result;
+	//public static MinTurnNode[][] eval;
 	
-	public static void evalGrid(int size) {
-		eval = new MinTurnNode[size][size];
-	//	result = new MinTurnNode[size][size];
+	
+	public static MinTurnNode[][] evalGrid(int size) {
+		MinTurnNode[][] eval = new MinTurnNode[size][size];
+		return eval;
 	}
 	
-	public static void setTable(int r, int c, int val) {
+	public static void setTable(int r, int c, int val, MinTurnNode[][] eval) {
 		eval[r][c] = new MinTurnNode(r,c,val);
 		//System.out.println(val+" "+ eval[x][y].value);
 		return;
 	}
 	
-	public static void printTable() {
+	public static void printTable(MinTurnNode[][] eval) {
 		for(int i = 0; i < eval.length; i++) {
 			for(int j = 0; j < eval.length; j++) {
 				System.out.print(" " + eval[i][j].value + " ");
@@ -39,13 +39,13 @@ public class EvaluationGrid {
 	/*
 	 * creates the edges between the nodes
 	 */
-	public static void createGraph(){
+	public static void createGraph(MinTurnNode[][] eval){
 		int dis;
 		for(int i = 0; i< eval.length;i++){
 			for(int j = 0; j<eval.length;j++){
 				dis = eval[i][j].value;
 				eval[i][j].minpath = -1;	
-				resetEdge(i,j);
+				resetEdge(i,j,eval);
 				if(i+dis<eval.length){
 					eval[i][j].south = eval[i+dis][j];
 				}
@@ -65,7 +65,7 @@ public class EvaluationGrid {
 	/*
 	 * creates the evaluation grid 
 	 */
-	public static void createResult() {
+	public static void createResult(MinTurnNode[][] eval) {
 		int[][] visited = new int[eval.length][eval.length];
 		Queue<MinTurnNode> queue = new LinkedList<MinTurnNode>();
 		MinTurnNode Temp;
@@ -113,7 +113,7 @@ public class EvaluationGrid {
 		
 	}
 	
-	public static GridPane rePrintTable() {
+	public static GridPane rePrintTable(MinTurnNode[][] eval ){
 		GridPane root = new GridPane();
 		
 		for(int i = 0; i < eval.length; i++) {
@@ -137,7 +137,7 @@ public class EvaluationGrid {
 		return root;
 	}
 	
-	public static GridPane printResultTable() {
+	public static GridPane printResultTable(MinTurnNode[][] eval) {
 		GridPane root = new GridPane();
 		int evalFunction = 0;
 		
@@ -173,7 +173,7 @@ public class EvaluationGrid {
 		return root;
 		
 	}
-	public static void resetEdge(int i, int j) {
+	public static void resetEdge(int i, int j,MinTurnNode[][] eval) {
 		eval[i][j].north=null;
 		eval[i][j].south=null;
 		eval[i][j].east=null;
@@ -181,7 +181,7 @@ public class EvaluationGrid {
 		
 	}
 	
-	public static int[][] fillArr(int[][]temp){
+	public static int[][] fillArr(int[][]temp,MinTurnNode[][] eval){
 		for(int i = 0; i<eval.length;i++) {
 			for(int j=0;j<eval.length;j++) {
 				temp[i][j]=eval[i][j].value;
@@ -192,7 +192,7 @@ public class EvaluationGrid {
 		
 	}
 
-	public static void fillEval(int[][]temp){
+	public static void fillEval(int[][]temp,MinTurnNode[][] eval){
 		for(int i = 0; i<eval.length;i++) {
 			for(int j=0;j<eval.length;j++) {
 				eval[i][j].value=temp[i][j];
@@ -202,7 +202,7 @@ public class EvaluationGrid {
 		
 	}
 	
-	public static int[] BasicHillClimb(){
+	public static int[] BasicHillClimb(MinTurnNode[][] eval){
 		int[] pre = new int[3];
 		Random rand = new Random();
         int val = rand.nextInt(eval.length);

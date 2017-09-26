@@ -41,7 +41,7 @@ public class HelloWorld extends Application {
 	public static GridPane root;
 	public static Tab gridTab;
 	public static Tab evalTab;
-	
+	static MinTurnNode[][] eval;
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -110,7 +110,7 @@ public class HelloWorld extends Application {
 		    			return;
 		    		}
 		    		
-		    		EvaluationGrid.evalGrid(mSize);
+		    		 eval =EvaluationGrid.evalGrid(mSize);
 		    		root = new GridPane();
 		    		for(int y = 0; y < mSize; y++){
 		                for(int x = 0; x < mSize; x++){
@@ -129,10 +129,10 @@ public class HelloWorld extends Application {
 		                    tf.setEditable(false);
 		                    if(x == mSize-1 && y == mSize-1) {
 		                    	tf.setText(" 0 ");
-		                    	EvaluationGrid.setTable(y, x, 0);
+		                    	EvaluationGrid.setTable(y, x, 0,eval);
 		                    } else {
 		                    	tf.setText(" " + rand1 + " ");
-		                    	EvaluationGrid.setTable(y, x, rand1);
+		                    	EvaluationGrid.setTable(y, x, rand1, eval);
 		                    }
 
 		                    // Iterate the Index using the loops
@@ -148,18 +148,18 @@ public class HelloWorld extends Application {
 		    		tabs.getTabs().add(gridtab);
 		    		
 		    		//where the evaluation takes place
-		    		EvaluationGrid.createGraph();
-		    		EvaluationGrid.printTable();
-		    		EvaluationGrid.createResult();
+		    		EvaluationGrid.createGraph(eval);
+		    		EvaluationGrid.printTable(eval);
+		    		EvaluationGrid.createResult(eval);
 		    		System.out.println();
-		    		EvaluationGrid.printResultTable();
+		    		EvaluationGrid.printResultTable(eval);
 		    		
 		    		//BHC(EvaluationGrid.eval ,200);
 		    		//HCR(EvaluationGrid.eval,200,5);
 		    		
 		    		
 		    		//setting up second tab
-		    		evaltab.setContent(EvaluationGrid.printResultTable());
+		    		evaltab.setContent(EvaluationGrid.printResultTable(eval));
 		    		evaltab.setText("Evaluation Grid");
 		    		tabs.getTabs().add(evaltab);
 		    		
@@ -235,9 +235,9 @@ public class HelloWorld extends Application {
                 	}
                 	
                 	//DO BASIC HILL CLIMB
-                	BHC(EvaluationGrid.eval , iter);
-                	evalTab.setContent(EvaluationGrid.printResultTable());
-                	gridTab.setContent(EvaluationGrid.rePrintTable());
+                	BHC(eval , iter);
+                	evalTab.setContent(EvaluationGrid.printResultTable(eval));
+                	gridTab.setContent(EvaluationGrid.rePrintTable(eval));
                 	
                 }
 		    }
@@ -299,9 +299,9 @@ public class HelloWorld extends Application {
 	        		
 	        	}
 		        //Do hill climb with random restarts
-		        HCR(EvaluationGrid.eval,iters,rand);
-		        evalTab.setContent(EvaluationGrid.printResultTable());
-            	gridTab.setContent(EvaluationGrid.rePrintTable());
+		        HCR(eval,iters,rand);
+		        evalTab.setContent(EvaluationGrid.printResultTable(eval));
+            	gridTab.setContent(EvaluationGrid.rePrintTable(eval));
 		    }
 		    });
 	    
@@ -361,9 +361,9 @@ public class HelloWorld extends Application {
 	        		
 	        	}
 		        //Do hill climb with random walk
-		        HCW(EvaluationGrid.eval,iters,prob);
-		        evalTab.setContent(EvaluationGrid.printResultTable());
-            	gridTab.setContent(EvaluationGrid.rePrintTable());
+		        HCW(eval,iters,prob);
+		        evalTab.setContent(EvaluationGrid.printResultTable(eval));
+            	gridTab.setContent(EvaluationGrid.rePrintTable(eval));
 
 		    }
 		    });
@@ -433,9 +433,9 @@ public class HelloWorld extends Application {
 	        		
 	        	}
 		        //Do anealing
-		        SA(EvaluationGrid.eval,iter,temp,decay);
-		        evalTab.setContent(EvaluationGrid.printResultTable());
-            	gridTab.setContent(EvaluationGrid.rePrintTable());
+		        SA(eval,iter,temp,decay);
+		        evalTab.setContent(EvaluationGrid.printResultTable(eval));
+            	gridTab.setContent(EvaluationGrid.rePrintTable(eval));
 		        
 		    }
 		    });
@@ -509,27 +509,27 @@ public class HelloWorld extends Application {
 		while(it!=0){
 			sminpath = start[n][n].minpath;
 			s = Calendar.getInstance().get(Calendar.MILLISECOND);
-			pre = EvaluationGrid.BasicHillClimb();
+			pre = EvaluationGrid.BasicHillClimb(eval);
 		
 			//System.out.println(sminpath+" "+start[n][n].minpath);
 			
-			EvaluationGrid.createGraph();
-			EvaluationGrid.printTable();
-			EvaluationGrid.createResult();
+			EvaluationGrid.createGraph(eval);
+			EvaluationGrid.printTable(eval);
+			EvaluationGrid.createResult(eval);
 			
 			//System.out.println(sminpath+" "+start[n][n].minpath);
 			
 			System.out.println();
-			EvaluationGrid.printResultTable();
+			EvaluationGrid.printResultTable(eval);
 	
 			//revert back to original grid
 			if(start[n][n].minpath < sminpath){
 				System.out.println(sminpath+" "+start[n][n].minpath);
 				start[pre[1]][pre[2]].value = pre[0];
 				System.out.println("r: "+pre[1]+" c: "+pre[2]+" pre val: "+pre[0]);
-				EvaluationGrid.createGraph();
-				EvaluationGrid.printTable();
-				EvaluationGrid.createResult();
+				EvaluationGrid.createGraph(eval);
+				EvaluationGrid.printTable(eval);
+				EvaluationGrid.createResult(eval);
 				
 			}/*else {
 				//change to new grid
@@ -573,7 +573,7 @@ public class HelloWorld extends Application {
 		}	
 		
 		
-		init = EvaluationGrid.fillArr(init);
+		init = EvaluationGrid.fillArr(init,eval);
 		
 		
 		while(it!=0){
@@ -581,41 +581,41 @@ public class HelloWorld extends Application {
 			
 			if(it%r==0) {
 				System.out.println("HCR RESET: "+sminpath+" "+start[n][n].minpath);
-				EvaluationGrid.printTable();
-				EvaluationGrid.fillEval(init);
-				EvaluationGrid.printTable();
+				EvaluationGrid.printTable(eval);
+				EvaluationGrid.fillEval(init,eval);
+				EvaluationGrid.printTable(eval);
 				System.out.println("HCR RESET: "+sminpath+" "+start[n][n].minpath);
 				file.format("%s \r\n","RESET");
 				
 			}
 
 			
-			pre = EvaluationGrid.BasicHillClimb();
+			pre = EvaluationGrid.BasicHillClimb(eval);
 		
 			//System.out.println(sminpath+" "+start[n][n].minpath);
 			
-			EvaluationGrid.createGraph();
-			EvaluationGrid.printTable();
-			EvaluationGrid.createResult();
+			EvaluationGrid.createGraph(eval);
+			EvaluationGrid.printTable(eval);
+			EvaluationGrid.createResult(eval);
 			
 			//System.out.println(sminpath+" "+start[n][n].minpath);
 			
 			System.out.println();
-			EvaluationGrid.printResultTable();
+			EvaluationGrid.printResultTable(eval);
 	
 			//revert back to original grid
 			if(start[n][n].minpath < sminpath){
 				System.out.println(sminpath+" "+start[n][n].minpath);
 				start[pre[1]][pre[2]].value = pre[0];
 				System.out.println("r: "+pre[1]+" c: "+pre[2]+" pre val: "+pre[0]);
-				EvaluationGrid.createGraph();
-				EvaluationGrid.printTable();
-				EvaluationGrid.createResult();
+				EvaluationGrid.createGraph(eval);
+				EvaluationGrid.printTable(eval);
+				EvaluationGrid.createResult(eval);
 				
 			}else {
 				//BEST
 				sminpath=start[n][n].minpath;
-				best = EvaluationGrid.fillArr(best);
+				best = EvaluationGrid.fillArr(best,eval);
 			}
 			
 			it--;
@@ -627,7 +627,7 @@ public class HelloWorld extends Application {
 				file.format("%s %d %s %d %s %d %s %d %s","Start: ",s,"End: ",f,"Total Time: ",(f-s),"Evaluation Val: ",start[n][n].minpath,"\r\n");
 			}	
 		}
-		EvaluationGrid.fillEval(best);
+		EvaluationGrid.fillEval(best,eval);
 		file.format("\r\n%s %d\r\n","Best Eval: ",sminpath);
 		
 		file.close();
@@ -658,18 +658,18 @@ public class HelloWorld extends Application {
 			
 			sminpath = start[n][n].minpath;
 			s = Calendar.getInstance().get(Calendar.MILLISECOND);
-			pre = EvaluationGrid.BasicHillClimb();
+			pre = EvaluationGrid.BasicHillClimb(eval);
 		
 			//System.out.println(sminpath+" "+start[n][n].minpath);
 			
-			EvaluationGrid.createGraph();
-			EvaluationGrid.printTable();
-			EvaluationGrid.createResult();
+			EvaluationGrid.createGraph(eval);
+			EvaluationGrid.printTable(eval);
+			EvaluationGrid.createResult(eval);
 			
 			//System.out.println(sminpath+" "+start[n][n].minpath);
 			
 			System.out.println();
-			EvaluationGrid.printResultTable();
+			EvaluationGrid.printResultTable(eval);
 	
 			val = rand.nextDouble();
 			//revert back to original grid
@@ -679,9 +679,9 @@ public class HelloWorld extends Application {
 					System.out.println(sminpath+" "+start[n][n].minpath);
 					start[pre[1]][pre[2]].value = pre[0];
 					System.out.println("r: "+pre[1]+" c: "+pre[2]+" pre val: "+pre[0]);
-					EvaluationGrid.createGraph();
-					EvaluationGrid.printTable();
-					EvaluationGrid.createResult();
+					EvaluationGrid.createGraph(eval);
+					EvaluationGrid.printTable(eval);
+					EvaluationGrid.createResult(eval);
 				
 				}
 			}else{
@@ -690,9 +690,9 @@ public class HelloWorld extends Application {
 					System.out.println(sminpath+" "+start[n][n].minpath);
 					start[pre[1]][pre[2]].value = pre[0];
 					System.out.println("r: "+pre[1]+" c: "+pre[2]+" pre val: "+pre[0]);
-					EvaluationGrid.createGraph();
-					EvaluationGrid.printTable();
-					EvaluationGrid.createResult();
+					EvaluationGrid.createGraph(eval);
+					EvaluationGrid.printTable(eval);
+					EvaluationGrid.createResult(eval);
 				
 					}
 			}
@@ -726,7 +726,7 @@ public class HelloWorld extends Application {
 		
 		
 		try {
-			file = new Formatter("HCWResults.txt");
+			file = new Formatter("SAResults.txt");
 			
 		}catch(FileNotFoundException e){
 			System.out.println("Error/n/n/n/n");
@@ -736,18 +736,18 @@ public class HelloWorld extends Application {
 			
 			sminpath = start[n][n].minpath;
 			s = Calendar.getInstance().get(Calendar.MILLISECOND);
-			pre = EvaluationGrid.BasicHillClimb();
+			pre = EvaluationGrid.BasicHillClimb(eval);
 		
 			//System.out.println(sminpath+" "+start[n][n].minpath);
 			
-			EvaluationGrid.createGraph();
-			EvaluationGrid.printTable();
-			EvaluationGrid.createResult();
+			EvaluationGrid.createGraph(eval);
+			EvaluationGrid.printTable(eval);
+			EvaluationGrid.createResult(eval);
 			
 			//System.out.println(sminpath+" "+start[n][n].minpath);
 			
 			System.out.println();
-			EvaluationGrid.printResultTable();
+			EvaluationGrid.printResultTable(eval);
 	
 			p = Math.exp((start[n][n].minpath-sminpath)/t); //Probability p = e^(V(j')-V(j))/t
 			
@@ -759,9 +759,9 @@ public class HelloWorld extends Application {
 					System.out.println(sminpath+" "+start[n][n].minpath);
 					start[pre[1]][pre[2]].value = pre[0];
 					System.out.println("r: "+pre[1]+" c: "+pre[2]+" pre val: "+pre[0]);
-					EvaluationGrid.createGraph();
-					EvaluationGrid.printTable();
-					EvaluationGrid.createResult();
+					EvaluationGrid.createGraph(eval);
+					EvaluationGrid.printTable(eval);
+					EvaluationGrid.createResult(eval);
 				
 				}
 			}else{
@@ -770,9 +770,9 @@ public class HelloWorld extends Application {
 					System.out.println(sminpath+" "+start[n][n].minpath);
 					start[pre[1]][pre[2]].value = pre[0];
 					System.out.println("r: "+pre[1]+" c: "+pre[2]+" pre val: "+pre[0]);
-					EvaluationGrid.createGraph();
-					EvaluationGrid.printTable();
-					EvaluationGrid.createResult();
+					EvaluationGrid.createGraph(eval);
+					EvaluationGrid.printTable(eval);
+					EvaluationGrid.createResult(eval);
 				
 					}
 			}
