@@ -49,13 +49,13 @@ public class EvaluationGrid {
 				if(i+dis<eval.length){
 					eval[i][j].south = eval[i+dis][j];
 				}
-				if(i-dis>0){
+				if(i-dis>=0){
 					eval[i][j].north = eval[i-dis][j];
 				}
 				if(j+dis<eval.length){
 					eval[i][j].east = eval[i][j+dis];
 				}
-				if(j-dis>0){
+				if(j-dis>=0){
 					eval[i][j].west = eval[i][j-dis];
 				}
 			}
@@ -80,27 +80,27 @@ public class EvaluationGrid {
 				
 				if(Temp.north!=null){
 					queue.add(Temp.north);
-					if(Temp.north.minpath==-1||Temp.north.minpath>Temp.minpath+1){
+					if(Temp.north.minpath==-1){
 						Temp.north.minpath = Temp.minpath+1;
 					}
 				}
 				if(Temp.south!=null){
 					queue.add(Temp.south);
-					if(Temp.south.minpath==-1||Temp.south.minpath>Temp.minpath+1){
+					if(Temp.south.minpath==-1){
 						Temp.south.minpath = Temp.minpath+1;
 					}
 					
 				}
 				if(Temp.east!=null){
 					queue.add(Temp.east);
-					if(Temp.east.minpath==-1||Temp.east.minpath>Temp.minpath+1){
+					if(Temp.east.minpath==-1){
 						Temp.east.minpath = Temp.minpath+1;
 					}
 					
 				}
 				if(Temp.west!=null){
 					queue.add(Temp.west);
-					if(Temp.west.minpath==-1||Temp.west.minpath>Temp.minpath+1){
+					if(Temp.west.minpath==-1){
 						Temp.west.minpath = Temp.minpath+1;
 					}
 					

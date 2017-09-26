@@ -86,7 +86,7 @@ public class PopulationGA {
 			double p1,p2;
 			int totaleval=0;
 			for(int i = 0; i<size; i++) {
-				totaleval += pop[size][n-1][n-1].minpath;
+				totaleval += pop[size-1][n-1][n-1].minpath;
 			}
 			
 			
