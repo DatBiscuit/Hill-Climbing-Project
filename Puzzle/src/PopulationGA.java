@@ -68,7 +68,7 @@ public class PopulationGA {
 				e.printStackTrace();
 			}
 			 try {
-				fw.write("Start: "+s+"End: "+f+"Total Time: "+(f-s)+"\n");
+				fw.write("Pop Size: "+size+"n: "+n+" Start: "+s+" End: "+f+" Total Time: "+(f-s)+"\n");
 				fw.close();
 			} catch (IOException e) {
 				System.out.println("Error in writing/n/n/n/n");
