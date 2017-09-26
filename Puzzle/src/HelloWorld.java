@@ -1,6 +1,8 @@
-import java.io.FileNotFoundException;
+//import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Calendar;
-import java.util.Formatter;
+//import java.util.Formatter;
 import java.util.Optional;
 import java.util.Random;
 
@@ -491,24 +493,25 @@ public class HelloWorld extends Application {
 	 
 	public static MinTurnNode[][] BHC(MinTurnNode[][] start, int it){
 		System.out.println("BHC: \n");
-		Formatter file = null;
+		//Formatter file = null;
 		int n = start.length-1;
 		int s,f;
 		int[] pre;
 		int sminpath;
 		
 		
-		
+		/*
 		try {
 			file = new Formatter("BHCResults.txt");
 			
 		}catch(FileNotFoundException e){
 			System.out.println("Error/n/n/n/n");
 		}	
-		
+		*/
+		s = Calendar.getInstance().get(Calendar.MILLISECOND);
 		while(it!=0){
 			sminpath = start[n][n].minpath;
-			s = Calendar.getInstance().get(Calendar.MILLISECOND);
+			
 			pre = EvaluationGrid.BasicHillClimb(eval);
 		
 			//System.out.println(sminpath+" "+start[n][n].minpath);
@@ -537,16 +540,37 @@ public class HelloWorld extends Application {
 			}
 			*/
 			it--;
-			f = Calendar.getInstance().get(Calendar.MILLISECOND);
 			
-			System.out.println("Start: "+s+"\nFinish: "+f+"\nTime Taken: "+(f-s));
+			
+			
+			/*
 			if(file!=null) {
 				System.out.println("Its writing");
 				file.format("%s %d %s %d %s %d %s %d %s","Start: ",s,"End: ",f,"Total Time: ",(f-s),"Evaluation Val: ",start[n][n].minpath,"\r\n");
 			}	
+			*/
+		}
+		f = Calendar.getInstance().get(Calendar.MILLISECOND);
+		System.out.println("Start: "+s+"\nFinish: "+f+"\nTime Taken: "+(f-s));
+		
+		
+		FileWriter fw=null;
+		try {
+			fw = new FileWriter("BHCResults.txt",true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error in creating fileWriter/n/n/n/n");
+			e.printStackTrace();
+		}
+		 try {
+			fw.write("Size n: "+start.length+" Start: "+s+" End: "+f+" Total Time: "+(f-s)+" Evaluation Val: "+start[n][n].minpath+"\n");
+			fw.close();
+		} catch (IOException e) {
+			System.out.println("Error in writing/n/n/n/n");
+			e.printStackTrace();
 		}
 		
-		file.close();
+		
 		
 		return start;
 		
@@ -555,8 +579,8 @@ public class HelloWorld extends Application {
 	
 	
 	public static MinTurnNode[][] HCR(MinTurnNode[][] start, int it, int r){
-		System.out.println("BHC: \n");
-		Formatter file = null;
+		System.out.println("HCR: \n");
+		//Formatter file = null;
 		int n = start.length-1;
 		int s,f;
 		int[] pre;
@@ -564,20 +588,20 @@ public class HelloWorld extends Application {
 		int[][] init = new int[n+1][n+1];
 		int[][] best = new int[n+1][n+1];
 		
-		
+		/*
 		try {
 			file = new Formatter("HCRResults.txt");
 			
 		}catch(FileNotFoundException e){
 			System.out.println("Error/n/n/n/n");
 		}	
-		
-		
+		*/
+		s = Calendar.getInstance().get(Calendar.MILLISECOND);
 		init = EvaluationGrid.fillArr(init,eval);
 		
 		
 		while(it!=0){
-			s = Calendar.getInstance().get(Calendar.MILLISECOND);
+			
 			
 			if(it%r==0) {
 				System.out.println("HCR RESET: "+sminpath+" "+start[n][n].minpath);
@@ -585,7 +609,7 @@ public class HelloWorld extends Application {
 				EvaluationGrid.fillEval(init,eval);
 				EvaluationGrid.printTable(eval);
 				System.out.println("HCR RESET: "+sminpath+" "+start[n][n].minpath);
-				file.format("%s \r\n","RESET");
+				//file.format("%s \r\n","RESET");
 				
 			}
 
@@ -619,26 +643,50 @@ public class HelloWorld extends Application {
 			}
 			
 			it--;
-			f = Calendar.getInstance().get(Calendar.MILLISECOND);
 			
+			/*
 			System.out.println("Start: "+s+"\nFinish: "+f+"\nTime Taken: "+(f-s));
 			if(file!=null) {
 				System.out.println("Its writing");
 				file.format("%s %d %s %d %s %d %s %d %s","Start: ",s,"End: ",f,"Total Time: ",(f-s),"Evaluation Val: ",start[n][n].minpath,"\r\n");
-			}	
+			}*/	
 		}
 		EvaluationGrid.fillEval(best,eval);
-		file.format("\r\n%s %d\r\n","Best Eval: ",sminpath);
+		f = Calendar.getInstance().get(Calendar.MILLISECOND);
 		
-		file.close();
+		FileWriter fw=null;
+		try {
+			fw = new FileWriter("HCRResults.txt",true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error in creating fileWriter/n/n/n/n");
+			e.printStackTrace();
+		}
+		 try {
+			fw.write("Size n: "+start.length+" r: "+r+" Start: "+s+" End: "+f+" Total Time: "+(f-s)+" Evaluation Val: "+start[n][n].minpath+"\n");
+			fw.close();
+		} catch (IOException e) {
+			System.out.println("Error in writing/n/n/n/n");
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
+		
+		//file.format("\r\n%s %d\r\n","Best Eval: ",sminpath);
+		
+		//file.close();
 		
 		return start;
 		
 	}
 	
 	public static MinTurnNode[][] HCW(MinTurnNode[][] start, int it, double p){
-		System.out.println("BHC: \n");
-		Formatter file = null;
+		System.out.println("HCW: \n");
+		//Formatter file = null;
 		int n = start.length-1;
 		int s,f;
 		int[] pre;
@@ -646,18 +694,18 @@ public class HelloWorld extends Application {
 		Random rand = new Random();
         double val ;
 		
-		
+		/*
 		try {
 			file = new Formatter("HCWResults.txt");
 			
 		}catch(FileNotFoundException e){
 			System.out.println("Error/n/n/n/n");
-		}	
-		
+		}*/	
+		s = Calendar.getInstance().get(Calendar.MILLISECOND);
 		while(it!=0){
 			
 			sminpath = start[n][n].minpath;
-			s = Calendar.getInstance().get(Calendar.MILLISECOND);
+			
 			pre = EvaluationGrid.BasicHillClimb(eval);
 		
 			//System.out.println(sminpath+" "+start[n][n].minpath);
@@ -674,7 +722,7 @@ public class HelloWorld extends Application {
 			val = rand.nextDouble();
 			//revert back to original grid
 			if(val>p){
-				file.format("%s %f\r\n","UpStep",p);
+				//file.format("%s %f\r\n","UpStep",p);
 				if(start[n][n].minpath < sminpath){
 					System.out.println(sminpath+" "+start[n][n].minpath);
 					start[pre[1]][pre[2]].value = pre[0];
@@ -685,7 +733,7 @@ public class HelloWorld extends Application {
 				
 				}
 			}else{
-				file.format("%s %f\r\n","DownStep",p);
+				//file.format("%s %f\r\n","DownStep",p);
 				if(start[n][n].minpath >= sminpath){
 					System.out.println(sminpath+" "+start[n][n].minpath);
 					start[pre[1]][pre[2]].value = pre[0];
@@ -697,16 +745,36 @@ public class HelloWorld extends Application {
 					}
 			}
 			it--;
-			f = Calendar.getInstance().get(Calendar.MILLISECOND);
 			
+			/*
 			System.out.println("Start: "+s+"\nFinish: "+f+"\nTime Taken: "+(f-s));
 			if(file!=null) {
 				System.out.println("Its writing");
 				file.format("%s %d %s %d %s %d %s %d %s","Start: ",s,"End: ",f,"Total Time: ",(f-s),"Evaluation Val: ",start[n][n].minpath,"\r\n");
-			}	
+			}*/	
+		}
+		f = Calendar.getInstance().get(Calendar.MILLISECOND);
+		
+		FileWriter fw=null;
+		try {
+			fw = new FileWriter("HCWResults.txt",true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error in creating fileWriter/n/n/n/n");
+			e.printStackTrace();
+		}
+		 try {
+			fw.write("Size n: "+start.length+" Prob: "+p+" Start: "+s+" End: "+f+" Total Time: "+(f-s)+" Evaluation Val: "+start[n][n].minpath+"\n");
+			fw.close();
+		} catch (IOException e) {
+			System.out.println("Error in writing/n/n/n/n");
+			e.printStackTrace();
 		}
 		
-		file.close();
+		
+		
+		
+		//file.close();
 		
 		return start;
 		
@@ -715,8 +783,8 @@ public class HelloWorld extends Application {
 	
 	
 	public static MinTurnNode[][] SA(MinTurnNode[][] start, int it, double t, double d){
-		System.out.println("BHC: \n");
-		Formatter file = null;
+		System.out.println("SA: \n");
+		//Formatter file = null;
 		int n = start.length-1;
 		int s,f;
 		int[] pre;
@@ -724,18 +792,18 @@ public class HelloWorld extends Application {
 		Random rand = new Random();
         double val,p;
 		
-		
+		/*
 		try {
 			file = new Formatter("SAResults.txt");
 			
 		}catch(FileNotFoundException e){
 			System.out.println("Error/n/n/n/n");
-		}	
-		
+		}*/	
+		s = Calendar.getInstance().get(Calendar.MILLISECOND);
 		while(it!=0){
 			
 			sminpath = start[n][n].minpath;
-			s = Calendar.getInstance().get(Calendar.MILLISECOND);
+			
 			pre = EvaluationGrid.BasicHillClimb(eval);
 		
 			//System.out.println(sminpath+" "+start[n][n].minpath);
@@ -754,7 +822,7 @@ public class HelloWorld extends Application {
 			val = rand.nextDouble();
 			//revert back to original grid
 			if(val>p){
-				file.format("%s %f\r\n","UpStep",p);
+				//file.format("%s %f\r\n","UpStep",p);
 				if(start[n][n].minpath < sminpath){
 					System.out.println(sminpath+" "+start[n][n].minpath);
 					start[pre[1]][pre[2]].value = pre[0];
@@ -765,7 +833,7 @@ public class HelloWorld extends Application {
 				
 				}
 			}else{
-				file.format("%s %f\r\n","DownStep",p);
+				//file.format("%s %f\r\n","DownStep",p);
 				if(start[n][n].minpath >= sminpath){
 					System.out.println(sminpath+" "+start[n][n].minpath);
 					start[pre[1]][pre[2]].value = pre[0];
@@ -777,17 +845,39 @@ public class HelloWorld extends Application {
 					}
 			}
 			it--;
-			f = Calendar.getInstance().get(Calendar.MILLISECOND);
 			
+			/*
 			System.out.println("Start: "+s+"\nFinish: "+f+"\nTime Taken: "+(f-s));
 			if(file!=null) {
 				System.out.println("Its writing");
 				file.format("%s %d %s %d %s %d %s %d %s","Start: ",s,"End: ",f,"Total Time: ",(f-s),"Evaluation Val: ",start[n][n].minpath,"\r\n");
-			}	
+			}*/	
 			t= t*d; // temperature decays
 		}
+		f = Calendar.getInstance().get(Calendar.MILLISECOND);
 		
-		file.close();
+		FileWriter fw=null;
+		try {
+			fw = new FileWriter("SAResults.txt",true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error in creating fileWriter/n/n/n/n");
+			e.printStackTrace();
+		}
+		 try {
+			fw.write("Size n: "+start.length+" Temp: "+t+" Decay: "+d+" Start: "+s+" End: "+f+" Total Time: "+(f-s)+" Evaluation Val: "+start[n][n].minpath+"\n");
+			fw.close();
+		} catch (IOException e) {
+			System.out.println("Error in writing/n/n/n/n");
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
+		//file.close();
 		
 		return start;
 		

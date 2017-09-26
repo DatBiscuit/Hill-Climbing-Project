@@ -1,4 +1,8 @@
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Calendar;
+
 import java.util.Random;
 
 import Evaluation.MinTurnNode;
@@ -10,7 +14,11 @@ public class PopulationGA {
 			MinTurnNode[][]best= null;
 			int[]parents;
 			 Random rand = new Random();
-             int rand1;
+             int rand1,s,f;
+             
+             
+            
+             s = Calendar.getInstance().get(Calendar.MILLISECOND);
             
 			for(int i = 0;i<size; i++) {// Creates initial population
 				
@@ -33,6 +41,7 @@ public class PopulationGA {
 			}
 			
 			while(it>0) {// goes through iterations
+				
 				parents = selection(pop,size,n);
 				pop = crossOver(parents,pop,size,n);
 				mutation(pop,size);
@@ -43,7 +52,29 @@ public class PopulationGA {
 				}
 				
 				it--;
+				
 			}
+			
+			best = best(pop,size,n);
+			f = Calendar.getInstance().get(Calendar.MILLISECOND);
+			
+			//File file = new File("SAResults.txt");
+			FileWriter fw=null;
+			try {
+				fw = new FileWriter("PBResults.txt",true);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Error in creating fileWriter/n/n/n/n");
+				e.printStackTrace();
+			}
+			 try {
+				fw.write("Start: "+s+"End: "+f+"Total Time: "+(f-s)+"\n");
+				fw.close();
+			} catch (IOException e) {
+				System.out.println("Error in writing/n/n/n/n");
+				e.printStackTrace();
+			}
+			
 			
 			return best;
 		}
@@ -55,7 +86,7 @@ public class PopulationGA {
 			double p1,p2;
 			int totaleval=0;
 			for(int i = 0; i<size; i++) {
-				totaleval += pop[size][n][n].minpath;
+				totaleval += pop[size][n-1][n-1].minpath;
 			}
 			
 			
@@ -65,8 +96,8 @@ public class PopulationGA {
 				while(one== two) {
 					two = rand.nextInt(size);
 				}
-				p1 = ((double)pop[one][n][n].minpath)/totaleval;
-				p2 = ((double)pop[two][n][n].minpath)/totaleval;
+				p1 = ((double)pop[one][n-1][n-1].minpath)/totaleval;
+				p2 = ((double)pop[two][n-1][n-1].minpath)/totaleval;
 				
 				if(p1>p2) {
 					parents[i]=one;
@@ -112,5 +143,18 @@ public class PopulationGA {
 			for(int i=0;i<size;i++) {
 				EvaluationGrid.BasicHillClimb(pop[i]);
 			}
+		}
+		
+		public static MinTurnNode[][] best(MinTurnNode[][][]pop, int size, int n){
+			int heval=pop[0][n-1][n-1].minpath;
+			int id = 0;
+			for(int i = 1;i<size;i++) {
+				if(pop[i][n-1][n-1].minpath>heval) {
+					heval = pop[i][n-1][n-1].minpath;
+					id = i;
+				}
+			}
+			
+			return pop[id];
 		}
 }
