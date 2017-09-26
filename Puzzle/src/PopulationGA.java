@@ -8,6 +8,7 @@ public class PopulationGA {
 		public static MinTurnNode[][] Pop(int size, int n, int it){
 			MinTurnNode[][][] pop = new MinTurnNode [size][n][n];
 			MinTurnNode[][]best= null;
+			int[]parents;
 			 Random rand = new Random();
              int rand1;
             
@@ -31,15 +32,23 @@ public class PopulationGA {
 				EvaluationGrid.createResult(pop[i]);	
 			}
 			
-			
-			
-			
-			
+			while(it>0) {// goes through iterations
+				parents = selection(pop,size,n);
+				pop = crossOver(parents,pop,size,n);
+				mutation(pop,size);
+				for(int i =0;i<size;i++) {
+					EvaluationGrid.createGraph(pop[i]);
+					EvaluationGrid.printTable(pop[i]);
+					EvaluationGrid.createResult(pop[i]);	
+				}
+				
+				it--;
+			}
 			
 			return best;
 		}
 		
-		public static int[] selection(MinTurnNode[][][] pop,int size, int n) {
+		public static int[] selection(MinTurnNode[][][] pop,int size, int n) {//returns array of parent indexes for nextgen
 			int[] parents = new int[size];
 			Random rand = new Random();
 			int one,two;
@@ -74,7 +83,7 @@ public class PopulationGA {
 			MinTurnNode[][][] nextGen = new MinTurnNode[size][n][n];
 			Random rand = new Random();
 			int rand1 = rand.nextInt(n);
-			int temp;
+			
 			
 			while(rand1==0 || rand1 == n-1) {
 				rand1 = rand.nextInt(n);
@@ -86,11 +95,9 @@ public class PopulationGA {
 								if(k<rand1) {
 									EvaluationGrid.setTable(j,k,pop[parent[i+1]][j][k].value,nextGen[parent[i]]);
 									EvaluationGrid.setTable(j,k,pop[parent[i]][j][k].value,nextGen[parent[i+1]]);
-									
-									
-									temp=pop[parent[i]][j][k].value;
-									pop[parent[i]][j][k].value=pop[parent[i+1]][j][k].value;
-									pop[parent[i+1]][j][k].value=temp;
+								}else {
+									EvaluationGrid.setTable(j,k,pop[parent[i]][j][k].value,nextGen[parent[i]]);
+									EvaluationGrid.setTable(j,k,pop[parent[i+1]][j][k].value,nextGen[parent[i+1]]);
 								}
 						}
 					}
@@ -98,7 +105,12 @@ public class PopulationGA {
 			}
 			
 			
-			return pop;
+			return nextGen;
 		}
 		
+		public static void mutation(MinTurnNode[][][] pop,int size) {// uses hillclimb to mutate
+			for(int i=0;i<size;i++) {
+				EvaluationGrid.BasicHillClimb(pop[i]);
+			}
+		}
 }
