@@ -5,3 +5,6 @@ Size n: 5 Start: 255 End: 487 Total Time: 232 Evaluation Val: 5
 Size n: 5 Start: 880 End: 80 Total Time: -800 Evaluation Val: 7
 Size n: 5 Start: 903 End: 209 Total Time: -694 Evaluation Val: 8
 Size n: 5 Start: 331 End: 585 Total Time: 254 Evaluation Val: 6
+Size n: 4 Start: 483 End: 522 Total Time: 39 Evaluation Val: 2
+Size n: 4 Start: 982 End: 177 Total Time: -805 Evaluation Val: 4
+Size n: 3 Start: 753 End: 906 Total Time: 153 Evaluation Val: 3

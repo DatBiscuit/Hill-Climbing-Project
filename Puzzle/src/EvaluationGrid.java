@@ -13,9 +13,6 @@ import Evaluation.MinTurnNode;
 public class EvaluationGrid {
 	
 	
-	//public static MinTurnNode[][] eval;
-	
-	
 	public static MinTurnNode[][] evalGrid(int size) {
 		MinTurnNode[][] eval = new MinTurnNode[size][size];
 		return eval;
@@ -23,7 +20,6 @@ public class EvaluationGrid {
 	
 	public static void setTable(int r, int c, int val, MinTurnNode[][] eval) {
 		eval[r][c] = new MinTurnNode(r,c,val);
-		//System.out.println(val+" "+ eval[x][y].value);
 		return;
 	}
 	

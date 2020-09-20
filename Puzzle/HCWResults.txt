@@ -1,1 +1,2 @@
 Size n: 9 Prob: 0.5 Start: 564 End: 700 Total Time: 136 Evaluation Val: 6
+Size n: 3 Prob: 0.49 Start: 285 End: 956 Total Time: 671 Evaluation Val: -1

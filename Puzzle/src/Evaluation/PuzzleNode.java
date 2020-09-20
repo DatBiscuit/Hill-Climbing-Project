@@ -1,6 +1,9 @@
 package Evaluation;
+
 /*	Contains value of a single grid box and points to the grid boxes reachable in each direction*/
+
 public class PuzzleNode {
+	
 	int val = -1;
 	int spath = -1;
 	PuzzleNode up = null;
@@ -12,7 +15,9 @@ public class PuzzleNode {
 		this.val = val;
 
 	}
-	public PuzzleNode(){
+	
+	//TODO Another default constructor why?
+	public PuzzleNode() {
 		
 	}
 }

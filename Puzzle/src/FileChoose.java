@@ -50,7 +50,6 @@ public class FileChoose extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
-		
 	}
 	
 	private static void configureFileChooser(final FileChooser fileChooser) {
@@ -63,7 +62,7 @@ public class FileChoose extends Application {
 	
 	public void start(Stage stage) throws Exception {
 		
-		stage.setTitle("AI Project 1");
+		stage.setTitle("Hill Climbing");
 		
 		
 		//setting up the tabs

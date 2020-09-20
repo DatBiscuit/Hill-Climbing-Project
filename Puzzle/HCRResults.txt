@@ -1,1 +1,2 @@
 Size n: 9 r: 5 Start: 308 End: 380 Total Time: 72 Evaluation Val: 8
+Size n: 3 r: 5 Start: 172 End: 678 Total Time: 506 Evaluation Val: 3

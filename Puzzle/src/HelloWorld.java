@@ -44,15 +44,58 @@ public class HelloWorld extends Application {
 	public static Tab gridTab;
 	public static Tab evalTab;
 	static MinTurnNode[][] eval;
+	static GridPane sizeDialog;
 	
 	public static void main(String[] args) {
 		launch(args);
 	}
 
+	private void setUpPromptSizeDialogWindow() {
+		sizeDialog = new GridPane();
+		sizeDialog.setAlignment(Pos.CENTER);
+		sizeDialog.setHgap(10);
+		sizeDialog.setVgap(10);
+		sizeDialog.setPadding(new Insets(25, 25, 25, 25));
+		Text scenetitle = new Text("Welcome");
+		scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+		sizeDialog.add(scenetitle, 0, 0, 2, 1);
+
+		Label inputTitle = new Label("Size of Matrix:");
+		sizeDialog.add(inputTitle, 0, 1);
+		TextField size = new TextField();
+		sizeDialog.add(size, 1, 1);
+		Button btn = new Button("Enter");
+		HBox hbBtn = new HBox(10);
+		hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
+		hbBtn.getChildren().add(btn);
+		sizeDialog.add(hbBtn, 1, 4);
+		
+		final Text actiontarget = new Text();
+        sizeDialog.add(actiontarget, 1, 6);
+	} 
+	
+	
+	private int generateRandomNumber() {
+	   	Random rand = new Random();
+	   	int randomNumber = rand.nextInt(mSize);
+	   	while(randomNumber == 0) {
+	   		 randomNumber = rand.nextInt(mSize);
+	   	}
+   		return randomNumber;
+	}
+	
+	private TextField createNewTile() {
+        TextField tf = new TextField();
+        tf.setPrefHeight(50);
+        tf.setPrefWidth(50);
+        tf.setAlignment(Pos.CENTER);
+        tf.setEditable(false);
+        return tf;
+     }
 	
 	public void start(Stage stage) throws Exception {
 		
-		stage.setTitle("AI Project 1");
+		stage.setTitle("Hill Climbing");
 		
 		
 		//setting up the tabs
@@ -66,6 +109,8 @@ public class HelloWorld extends Application {
 		
 		//setting tabs
 		setTabs(gridtab, evaltab);
+		
+		//setUpPromptSizeDialogWindow();
 		
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.CENTER);
@@ -90,6 +135,7 @@ public class HelloWorld extends Application {
 		//code used to help with testing the textfield
 		final Text actiontarget = new Text();
         grid.add(actiontarget, 1, 6);
+        
 		
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			 
@@ -112,29 +158,21 @@ public class HelloWorld extends Application {
 		    			return;
 		    		}
 		    		
-		    		 eval =EvaluationGrid.evalGrid(mSize);
+		    		eval = EvaluationGrid.evalGrid(mSize);
 		    		root = new GridPane();
 		    		for(int y = 0; y < mSize; y++){
 		                for(int x = 0; x < mSize; x++){
-
-		                    Random rand = new Random();
-		                    int rand1 = rand.nextInt(mSize);
-		                    while(rand1 == 0) {
-		                    	rand1 = rand.nextInt(mSize);
-		                    }
-
-		                    // Create a new TextField in each Iteration
-		                    TextField tf = new TextField();
-		                    tf.setPrefHeight(50);
-		                    tf.setPrefWidth(50);
-		                    tf.setAlignment(Pos.CENTER);
-		                    tf.setEditable(false);
+		                    
+		                    int currentNumber = generateRandomNumber();
+		                    
+		                    TextField tf = createNewTile();
+		                    
 		                    if(x == mSize-1 && y == mSize-1) {
 		                    	tf.setText(" 0 ");
 		                    	EvaluationGrid.setTable(y, x, 0,eval);
 		                    } else {
-		                    	tf.setText(" " + rand1 + " ");
-		                    	EvaluationGrid.setTable(y, x, rand1, eval);
+		                    	tf.setText(" " + currentNumber + " ");
+		                    	EvaluationGrid.setTable(y, x, currentNumber, eval);
 		                    }
 
 		                    // Iterate the Index using the loops
@@ -156,10 +194,6 @@ public class HelloWorld extends Application {
 		    		System.out.println();
 		    		EvaluationGrid.printResultTable(eval);
 		    		
-		    		//BHC(EvaluationGrid.eval ,200);
-		    		//HCR(EvaluationGrid.eval,200,5);
-		    		
-		    		
 		    		//setting up second tab
 		    		evaltab.setContent(EvaluationGrid.printResultTable(eval));
 		    		evaltab.setText("Evaluation Grid");
@@ -167,10 +201,7 @@ public class HelloWorld extends Application {
 		    		
 		    		//set the scene to show
 		    		scene2 = new Scene(tabs);
-		    		stage.setScene(scene2);
-		    		stage.show();
-		    		
-		    		
+		    		changeScene(scene2, stage);
 		    		
 		        } else {
 		        	actiontarget.setFill(Color.FIREBRICK);
@@ -181,22 +212,19 @@ public class HelloWorld extends Application {
 		});
 		
 		scene = new Scene(grid);
-
-		stage.setScene(scene);
-		stage.show();
+		changeScene(scene, stage);
+	}
+	
+	public static void setTabs(Tab grid, Tab evaluation) {
+		gridTab = grid;
+		evalTab = evaluation;
 		
 	}
 	
-	public static void setTabs(Tab g, Tab e) {
-		gridTab = g;
-		evalTab = e;
+	public static Tab getTabs(char currentTab) {
+		if(currentTab == 'g')return gridTab;
 		
-	}
-	
-	public static Tab getTabs(char c) {
-		if(c == 'g')return gridTab;
-		
-		if(c == 'e') return evalTab;
+		if(currentTab == 'e') return evalTab;
 		
 		return null;
 	}
@@ -548,34 +576,20 @@ public class HelloWorld extends Application {
 	 
 	public static MinTurnNode[][] BHC(MinTurnNode[][] start, int it){
 		System.out.println("BHC: \n");
-		//Formatter file = null;
 		int n = start.length-1;
 		int s,f;
 		int[] pre;
 		int sminpath;
 		
-		
-		/*
-		try {
-			file = new Formatter("BHCResults.txt");
-			
-		}catch(FileNotFoundException e){
-			System.out.println("Error/n/n/n/n");
-		}	
-		*/
 		s = Calendar.getInstance().get(Calendar.MILLISECOND);
 		while(it!=0){
 			sminpath = start[n][n].minpath;
 			
 			pre = EvaluationGrid.BasicHillClimb(eval);
-		
-			//System.out.println(sminpath+" "+start[n][n].minpath);
 			
 			EvaluationGrid.createGraph(eval);
 			EvaluationGrid.printTable(eval);
 			EvaluationGrid.createResult(eval);
-			
-			//System.out.println(sminpath+" "+start[n][n].minpath);
 			
 			System.out.println();
 			EvaluationGrid.printResultTable(eval);
@@ -589,21 +603,10 @@ public class HelloWorld extends Application {
 				EvaluationGrid.printTable(eval);
 				EvaluationGrid.createResult(eval);
 				
-			}/*else {
-				//change to new grid
-				sminpath=start[n][n].minpath;
 			}
-			*/
 			it--;
 			
 			
-			
-			/*
-			if(file!=null) {
-				System.out.println("Its writing");
-				file.format("%s %d %s %d %s %d %s %d %s","Start: ",s,"End: ",f,"Total Time: ",(f-s),"Evaluation Val: ",start[n][n].minpath,"\r\n");
-			}	
-			*/
 		}
 		f = Calendar.getInstance().get(Calendar.MILLISECOND);
 		System.out.println("Start: "+s+"\nFinish: "+f+"\nTime Taken: "+(f-s));
@@ -643,14 +646,6 @@ public class HelloWorld extends Application {
 		int[][] init = new int[n+1][n+1];
 		int[][] best = new int[n+1][n+1];
 		
-		/*
-		try {
-			file = new Formatter("HCRResults.txt");
-			
-		}catch(FileNotFoundException e){
-			System.out.println("Error/n/n/n/n");
-		}	
-		*/
 		s = Calendar.getInstance().get(Calendar.MILLISECOND);
 		init = EvaluationGrid.fillArr(init,eval);
 		
@@ -664,20 +659,16 @@ public class HelloWorld extends Application {
 				EvaluationGrid.fillEval(init,eval);
 				EvaluationGrid.printTable(eval);
 				System.out.println("HCR RESET: "+sminpath+" "+start[n][n].minpath);
-				//file.format("%s \r\n","RESET");
 				
 			}
 
 			
 			pre = EvaluationGrid.BasicHillClimb(eval);
-		
-			//System.out.println(sminpath+" "+start[n][n].minpath);
 			
 			EvaluationGrid.createGraph(eval);
 			EvaluationGrid.printTable(eval);
 			EvaluationGrid.createResult(eval);
 			
-			//System.out.println(sminpath+" "+start[n][n].minpath);
 			
 			System.out.println();
 			EvaluationGrid.printResultTable(eval);
@@ -698,13 +689,7 @@ public class HelloWorld extends Application {
 			}
 			
 			it--;
-			
-			/*
-			System.out.println("Start: "+s+"\nFinish: "+f+"\nTime Taken: "+(f-s));
-			if(file!=null) {
-				System.out.println("Its writing");
-				file.format("%s %d %s %d %s %d %s %d %s","Start: ",s,"End: ",f,"Total Time: ",(f-s),"Evaluation Val: ",start[n][n].minpath,"\r\n");
-			}*/	
+
 		}
 		EvaluationGrid.fillEval(best,eval);
 		f = Calendar.getInstance().get(Calendar.MILLISECOND);
@@ -726,15 +711,6 @@ public class HelloWorld extends Application {
 		}
 		
 		
-		
-		
-		
-		
-		
-		//file.format("\r\n%s %d\r\n","Best Eval: ",sminpath);
-		
-		//file.close();
-		
 		return start;
 		
 	}
@@ -749,13 +725,6 @@ public class HelloWorld extends Application {
 		Random rand = new Random();
         double val ;
 		
-		/*
-		try {
-			file = new Formatter("HCWResults.txt");
-			
-		}catch(FileNotFoundException e){
-			System.out.println("Error/n/n/n/n");
-		}*/	
 		s = Calendar.getInstance().get(Calendar.MILLISECOND);
 		while(it!=0){
 			
@@ -763,13 +732,11 @@ public class HelloWorld extends Application {
 			
 			pre = EvaluationGrid.BasicHillClimb(eval);
 		
-			//System.out.println(sminpath+" "+start[n][n].minpath);
-			
+
 			EvaluationGrid.createGraph(eval);
 			EvaluationGrid.printTable(eval);
 			EvaluationGrid.createResult(eval);
 			
-			//System.out.println(sminpath+" "+start[n][n].minpath);
 			
 			System.out.println();
 			EvaluationGrid.printResultTable(eval);
@@ -777,7 +744,6 @@ public class HelloWorld extends Application {
 			val = rand.nextDouble();
 			//revert back to original grid
 			if(val>p){
-				//file.format("%s %f\r\n","UpStep",p);
 				if(start[n][n].minpath < sminpath){
 					System.out.println(sminpath+" "+start[n][n].minpath);
 					start[pre[1]][pre[2]].value = pre[0];
@@ -788,7 +754,7 @@ public class HelloWorld extends Application {
 				
 				}
 			}else{
-				//file.format("%s %f\r\n","DownStep",p);
+
 				if(start[n][n].minpath >= sminpath){
 					System.out.println(sminpath+" "+start[n][n].minpath);
 					start[pre[1]][pre[2]].value = pre[0];
@@ -801,12 +767,6 @@ public class HelloWorld extends Application {
 			}
 			it--;
 			
-			/*
-			System.out.println("Start: "+s+"\nFinish: "+f+"\nTime Taken: "+(f-s));
-			if(file!=null) {
-				System.out.println("Its writing");
-				file.format("%s %d %s %d %s %d %s %d %s","Start: ",s,"End: ",f,"Total Time: ",(f-s),"Evaluation Val: ",start[n][n].minpath,"\r\n");
-			}*/	
 		}
 		f = Calendar.getInstance().get(Calendar.MILLISECOND);
 		
@@ -827,10 +787,6 @@ public class HelloWorld extends Application {
 		}
 		
 		
-		
-		
-		//file.close();
-		
 		return start;
 		
 	}
@@ -839,7 +795,6 @@ public class HelloWorld extends Application {
 	
 	public static MinTurnNode[][] SA(MinTurnNode[][] start, int it, double t, double d){
 		System.out.println("SA: \n");
-		//Formatter file = null;
 		int n = start.length-1;
 		int s,f;
 		int[] pre;
@@ -847,13 +802,6 @@ public class HelloWorld extends Application {
 		Random rand = new Random();
         double val,p;
 		
-		/*
-		try {
-			file = new Formatter("SAResults.txt");
-			
-		}catch(FileNotFoundException e){
-			System.out.println("Error/n/n/n/n");
-		}*/	
 		s = Calendar.getInstance().get(Calendar.MILLISECOND);
 		while(it!=0){
 			
@@ -861,13 +809,11 @@ public class HelloWorld extends Application {
 			
 			pre = EvaluationGrid.BasicHillClimb(eval);
 		
-			//System.out.println(sminpath+" "+start[n][n].minpath);
 			
 			EvaluationGrid.createGraph(eval);
 			EvaluationGrid.printTable(eval);
 			EvaluationGrid.createResult(eval);
 			
-			//System.out.println(sminpath+" "+start[n][n].minpath);
 			
 			System.out.println();
 			EvaluationGrid.printResultTable(eval);
@@ -877,7 +823,7 @@ public class HelloWorld extends Application {
 			val = rand.nextDouble();
 			//revert back to original grid
 			if(val>p){
-				//file.format("%s %f\r\n","UpStep",p);
+
 				if(start[n][n].minpath < sminpath){
 					System.out.println(sminpath+" "+start[n][n].minpath);
 					start[pre[1]][pre[2]].value = pre[0];
@@ -888,7 +834,7 @@ public class HelloWorld extends Application {
 				
 				}
 			}else{
-				//file.format("%s %f\r\n","DownStep",p);
+
 				if(start[n][n].minpath >= sminpath){
 					System.out.println(sminpath+" "+start[n][n].minpath);
 					start[pre[1]][pre[2]].value = pre[0];
@@ -901,12 +847,6 @@ public class HelloWorld extends Application {
 			}
 			it--;
 			
-			/*
-			System.out.println("Start: "+s+"\nFinish: "+f+"\nTime Taken: "+(f-s));
-			if(file!=null) {
-				System.out.println("Its writing");
-				file.format("%s %d %s %d %s %d %s %d %s","Start: ",s,"End: ",f,"Total Time: ",(f-s),"Evaluation Val: ",start[n][n].minpath,"\r\n");
-			}*/	
 			t= t*d; // temperature decays
 		}
 		f = Calendar.getInstance().get(Calendar.MILLISECOND);
@@ -928,21 +868,9 @@ public class HelloWorld extends Application {
 		}
 		
 		
-		
-		
-		
-		
-		//file.close();
-		
 		return start;
 		
 	}
-
-	
-	
-	
-	
-	
 	
 	
 	}

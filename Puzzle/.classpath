@@ -6,6 +6,5 @@
 			<accessrule kind="accessible" pattern="javafx/**"/>
 		</accessrules>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_144/jre/lib/ext/jfxrt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
